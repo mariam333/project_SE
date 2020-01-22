@@ -31,6 +31,7 @@ public class ChatClient extends AbstractClient
    * The Login ID of the user.
    */
   String loginID;
+  public  String servermsg=null;
 
   
   //Constructors ****************************************************
@@ -83,7 +84,17 @@ public class ChatClient extends AbstractClient
   public void handleMessageFromServer(Object msg) 
   {
     clientUI.display(msg.toString());
+    servermsg=msg.toString();
   }
+  public void setmsg(Object msg) 
+  {
+    servermsg=msg.toString();
+  }
+  public String getmsg() 
+  {
+    return servermsg;
+  }
+
 
    /**
    * This method handles all data coming from the UI            
@@ -94,44 +105,43 @@ public class ChatClient extends AbstractClient
   {
     // detect commands
 	  
-	if (message.equalsIgnoreCase("view")){
-	      try
-	      {
-	        sendToServer("SELECT * FROM catalog");
-	      }
-	      catch (Exception e)
-	      {
-	        clientUI.display("Could not send message to server.  Terminating client.");
-	        quit();
-	      }
-	}
-	
-	if (message.charAt(0)=='U'){
-	      try
-	      {
-	        sendToServer(message);
-	      }
-	      catch (Exception e)
-	      {
-	        clientUI.display("Could not send message to server.  Terminating client.");
-	        quit();
-	      }
-	}
-	
-	if (message.charAt(0)=='P'){
-	      try
-	      {
-	        sendToServer(message);
-	      }
-	      catch (Exception e)
-	      {
-	        clientUI.display("Could not send message to server.  Terminating client.");
-	        quit();
-	      }
-	}
-
-
-	else if (message.charAt(0) == '#')
+//	if (message.equalsIgnoreCase("view")){
+//	      try
+//	      {
+//	        sendToServer("SELECT * FROM catalog");
+//	      }
+//	      catch (Exception e)
+//	      {
+//	        clientUI.display("Could not send message to server.  Terminating client.");
+//	        quit();
+//	      }
+//	}
+//	
+//	if (message.charAt(0)=='U'){
+//	      try
+//	      {
+//	        sendToServer(message);
+//	      }
+//	      catch (Exception e)
+//	      {
+//	        clientUI.display("Could not send message to server.  Terminating client.");
+//	        quit();
+//	      }
+//	}
+//	
+//	if (message.charAt(0)=='P'){
+//	      try
+//	      {
+//	        sendToServer(message);
+//	      }
+//	      catch (Exception e)
+//	      {
+//	        clientUI.display("Could not send message to server.  Terminating client.");
+//	        quit();
+//	      }
+//	}
+	 System.out.println(message+" Client");
+    if (message.charAt(0) == '#')
     {
       runCommand(message);
     }
@@ -225,9 +235,7 @@ public class ChatClient extends AbstractClient
     {
       clientUI.display("Current port: " + Integer.toString(getPort()));
     }
-    
-    
-    
+ 
   }
   
   /**

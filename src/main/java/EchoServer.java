@@ -12,6 +12,8 @@ import java.sql.Statement;
 
 import ocsf.server.*;
 import common.*;
+import models.Person;
+import models.Shopper;
 
 /**
  * This class overrides some of the methods in the abstract 
@@ -72,6 +74,20 @@ public class EchoServer extends AbstractServer
   {
     super(port);
     this.serverUI = serverUI;
+	Connection conn = null;
+	Statement stmt = null;
+	try {
+		Class.forName(JDBC_DRIVER);
+		conn = DriverManager.getConnection(DB_URL, USER, PASS);
+	} catch (SQLException se) {
+				se.printStackTrace();
+				System.out.println("SQLException: " + se.getMessage());
+				System.out.println("SQLState: " + se.getSQLState());
+				System.out.println("VendorError: " + se.getErrorCode());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		
   }
 
   //Instance methods ************************************************
@@ -82,10 +98,8 @@ public class EchoServer extends AbstractServer
    * @param msg The message received from the client.
    * @param client The connection from which the message originated.
    */
-  public void handleMessageFromClient
-    (Object msg, ConnectionToClient client)
+  public void handleMessageFromClient(Object msg, ConnectionToClient client)
   {
-
 
     if (msg.toString().startsWith("#login "))
     {
@@ -114,113 +128,148 @@ public class EchoServer extends AbstractServer
         catch (IOException e) {}
         return;
       }
-      System.out.println("Message received: " + msg + " from \"" + 
-        client.getInfo("loginID") + "\" " + client);
       
-	  
-		Connection conn = null;
-		Statement stmt = null;
-		try {
-			Class.forName(JDBC_DRIVER);
-			 
-			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-			stmt = conn.createStatement();
-
-			
-			System.out.println(msg);
+		String email = null;
+		String pass = null;
+		String firstname = null;
+		String lastname = null;
+		String tel = null;
+		String visa = null;
+		String cvv = null;
+		String[] detail = ((String) msg).split(" ");
 		
-			if(msg.toString().charAt(0)=='S')
-			{
-				
-	    
-			String sql = "SELECT * FROM catalog";
-			ResultSet rs = stmt.executeQuery(sql);
-			 msg=" ";
-			while (rs.next()) {
-		
-				int num = rs.getInt("num");
-				String type = rs.getString("type");
-				String color = rs.getString("color");
-				int price = rs.getInt("price");
-				//System.out.format("Number %5s Type %15s color %18s Price %d\n", num, type, color,price);
-				String curr= "Number: " + num+ " type: " + type + " Color: " + color + " price: " + price + "\n";
-				msg=msg+curr;
-			}
-		     client.setInfo("", msg);
-
-		}
-			else if(msg.toString().charAt(0)=='U')
-			{
-				String k=" updated price by num";
-				client.setInfo("", k);
-			String [] str=msg.toString().split(" ");
-
-			String sql="SELECT * FROM  catalog";
-			Statement st=conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
-			ResultSet rs = st.executeQuery(sql);
-			PreparedStatement update= conn.prepareStatement("UPDATE catalog SET price=? WHERE num =?");
+		System.out.println(msg);
+		String command = detail[0];
+		System.out.println(command);
+		switch (command) {
+		//SignUp mar 123 mar@gmail.com 0529761893 
+		case "SignUp":
 			
-
-				int newPrice=Integer.parseInt(str[2]);
-				int num=Integer.parseInt(str[1]);
-				lastChange=num;
-				update.setInt(1,newPrice );
-				update.setInt(2,num );
-				update.executeUpdate();
-			
-			}
-			
-			else if(msg.toString().charAt(0)=='P')
-			{
-				
-				 msg=" ";
-				System.out.println("laaast change num =" + lastChange);
-			
-				if (lastChange==0) {
-				msg=" no update yet";
-				 client.setInfo("", msg);
-				}
-				else {
-					String [] str=msg.toString().split(" ");
-					String sql="SELECT * FROM  catalog WHERE num ="+ lastChange ;
-					System.out.println(sql);
-
-					ResultSet rs = stmt.executeQuery(sql);
-					while (rs.next()) {
-						int num = rs.getInt("num");
-						String type = rs.getString("type");
-						String color = rs.getString("color");
-						int price = rs.getInt("price");
-						String curr= "Number: " + num+ " type: " + type + " Color: " + color + " price: " + price + "\n";
-						msg=msg+curr;
-					}
-					 client.setInfo("", msg);
-				}
-				
-			}
-
-		}
-		catch (SQLException se) {
-		
-			se.printStackTrace();
-			System.out.println("SQLException: " + se.getMessage());
-            System.out.println("SQLState: " + se.getSQLState());
-            System.out.println("VendorError: " + se.getErrorCode());
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
+			System.out.println("hhhhhhhhh");
+			Shopper shopper=new Shopper(detail[1],detail[2],detail[3],Integer.parseInt(detail[4]),Integer.parseInt(detail[5]),Integer.parseInt(detail[6]),Integer.parseInt(detail[7]));
 			try {
-				if (stmt != null)
-					stmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (SQLException se) {
-				se.printStackTrace();
+				if (shopper.addShopper() == true) {
+					this.handleMessageFromServerUI("SignUp");
+					break;
+
+				} else {
+					this.handleMessageFromServerUI("SignUpFailed");
+					break;
+				}
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		}
-    
-      this.sendToAllClients(client.getInfo("loginID") + "> " + msg);
+		case "ShowShopper":
+			String msgToClient= Shopper.ShowShopper(Integer.parseInt(detail[1]));
+			if (msgToClient!=null) {
+				msgToClient="ShowShopper%"+msgToClient;
+				System.out.println(msgToClient);
+				this.handleMessageFromServerUI(msgToClient);
+				break;
+			}else {
+				this.handleMessageFromServerUI("CantShowShopper");
+				break;
+			}
+				
+			}
+			
+		
     }
+
+
+//			if(msg.toString().charAt(0)=='S')
+//			{
+//				
+//	    
+//			String sql = "SELECT * FROM catalog";
+//			ResultSet rs = stmt.executeQuery(sql);
+//			 msg=" ";
+//			while (rs.next()) {
+//		
+//				int num = rs.getInt("num");
+//				String type = rs.getString("type");
+//				String color = rs.getString("color");
+//				int price = rs.getInt("price");
+//				//System.out.format("Number %5s Type %15s color %18s Price %d\n", num, type, color,price);
+//				String curr= "Number: " + num+ " type: " + type + " Color: " + color + " price: " + price + "\n";
+//				msg=msg+curr;
+//			}
+//		     client.setInfo("", msg);
+//
+//		}
+//			else if(msg.toString().charAt(0)=='U')
+//			{
+//				String k=" updated price by num";
+//				client.setInfo("", k);
+//			String [] str=msg.toString().split(" ");
+//
+//			String sql="SELECT * FROM  catalog";
+//			Statement st=conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
+//			ResultSet rs = st.executeQuery(sql);
+//			PreparedStatement update= conn.prepareStatement("UPDATE catalog SET price=? WHERE num =?");
+//			
+//
+//				int newPrice=Integer.parseInt(str[2]);
+//				int num=Integer.parseInt(str[1]);
+//				lastChange=num;
+//				update.setInt(1,newPrice );
+//				update.setInt(2,num );
+//				update.executeUpdate();
+//			
+//			}
+//			
+//			else if(msg.toString().charAt(0)=='P')
+//			{
+//				
+//				 msg=" ";
+//				System.out.println("laaast change num =" + lastChange);
+//			
+//				if (lastChange==0) {
+//				msg=" no update yet";
+//				 client.setInfo("", msg);
+//				}
+//				else {
+//					String [] str=msg.toString().split(" ");
+//					String sql="SELECT * FROM  catalog WHERE num ="+ lastChange ;
+//					System.out.println(sql);
+//
+//					ResultSet rs = stmt.executeQuery(sql);
+//					while (rs.next()) {
+//						int num = rs.getInt("num");
+//						String type = rs.getString("type");
+//						String color = rs.getString("color");
+//						int price = rs.getInt("price");
+//						String curr= "Number: " + num+ " type: " + type + " Color: " + color + " price: " + price + "\n";
+//						msg=msg+curr;
+//					}
+//					 client.setInfo("", msg);
+//				}
+//				
+//			}
+//
+//		}
+//		catch (SQLException se) {
+//		
+//			se.printStackTrace();
+//			System.out.println("SQLException: " + se.getMessage());
+//            System.out.println("SQLState: " + se.getSQLState());
+//            System.out.println("VendorError: " + se.getErrorCode());
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		} finally {
+//			try {
+//				if (stmt != null)
+//					stmt.close();
+//				if (conn != null)
+//					conn.close();
+//			} catch (SQLException se) {
+//				se.printStackTrace();
+//			}
+//		}
+//    
+//      this.sendToAllClients(client.getInfo("loginID") + "> " + msg);
+//    }
   }
 
   /**
