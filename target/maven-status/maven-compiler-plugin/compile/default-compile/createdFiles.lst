@@ -1,5 +1,4 @@
 ocsf\server\AbstractServer.class
-db\Main.class
 ServerConsole.class
 common\ChatIF.class
 ocsf\server\ConnectionToClient.class

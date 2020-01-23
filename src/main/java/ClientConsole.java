@@ -16,6 +16,10 @@ import common.*;
  * @author Dr Robert Lagani&egrave;re
  * @version July 2000
  */
+/**
+ * @author maria
+ *
+ */
 public class ClientConsole implements ChatIF 
 {
   //Class variables *************************************************
