@@ -12,7 +12,6 @@ import java.sql.Statement;
 
 import ocsf.server.*;
 import common.*;
-import models.Person;
 import models.Shopper;
 
 /**
