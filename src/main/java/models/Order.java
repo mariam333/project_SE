@@ -21,7 +21,7 @@ public class Order {
  
  
  
- public Order(	int storeId,int paymentId,	double totalPrice,	String deliveryAddress,	String reciptionName,String status, Boolean doneOrder, String time) 
+ public Order(int storeId,int paymentId,	double totalPrice,	String deliveryAddress,	String reciptionName,String status, Boolean doneOrder, String time) 
  {
 	 
 	 this.storeId=storeId;
@@ -34,6 +34,9 @@ public class Order {
 	 this.time=time;
 	 
  }
+ 
+ 
+ 
  
  
 }
