@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="src.main.java.application.ComplaintReportController">
+   <children>
+      <AnchorPane prefHeight="567.0" prefWidth="593.0">
+         <children>
+            <AnchorPane prefHeight="129.0" prefWidth="593.0" style="-fx-background-color: #330a4d;">
+               <children>
+                  <Label layoutX="5.0" layoutY="-6.0" prefHeight="66.0" prefWidth="386.0" text="Complaint Report" textFill="#f8f4f4">
+                     <font>
+                        <Font name="Kristen ITC" size="42.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="27.0" layoutY="58.0" prefHeight="66.0" prefWidth="159.0" text="6/2020" textFill="#f8f4f4">
+                     <font>
+                        <Font name="Kristen ITC" size="42.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <ImageView fitHeight="446.0" fitWidth="593.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../../Downloads/simplephoto.jpeg" />
+               </image>
+            </ImageView>
+            <BarChart layoutX="-7.0" layoutY="183.0" prefHeight="375.0" prefWidth="378.0">
+               <xAxis>
+                  <CategoryAxis prefHeight="27.0" prefWidth="321.0" side="BOTTOM" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis side="LEFT" />
+               </yAxis>
+            </BarChart>
+            <Button alignment="TOP_LEFT" layoutX="486.0" layoutY="506.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="83.0" style="-fx-background-color: #000000;" text="Back" textFill="#f8f4f4">
+               <font>
+                  <Font name="Berlin Sans FB" size="21.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
