@@ -15,7 +15,7 @@
    <children>
       <ImageView fx:id="image" fitHeight="813.0" fitWidth="830.0" layoutX="1.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../Pictures/Eclipphoto/blue.jpg" />
+            <Image url="@../../../test/resources/blue.jpg" />
          </image>
       </ImageView>
       <Text layoutX="277.0" layoutY="171.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign In" textAlignment="CENTER" wrappingWidth="234.13671875">
