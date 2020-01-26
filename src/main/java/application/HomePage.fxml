@@ -17,7 +17,7 @@
    <children>
       <ImageView fitHeight="807.0" fitWidth="495.0" layoutX="195.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../project/proj_part3/wild-flowers-floral-wallpaper-mural-coloured.jpg" />
+            <Image url="@wild-flowers-floral-wallpaper-mural-coloured.jpg" />
          </image>
       </ImageView>
       <Label layoutX="214.0" layoutY="5.0" prefHeight="55.0" prefWidth="256.0" text="Welcome to our shop" textFill="#f660f8">
