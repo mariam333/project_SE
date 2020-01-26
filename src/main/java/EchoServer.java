@@ -12,6 +12,7 @@ import java.sql.Statement;
 
 import ocsf.server.*;
 import common.*;
+import models.Item;
 import models.Person;
 import models.Shopper;
 
@@ -171,9 +172,86 @@ public class EchoServer extends AbstractServer
 				this.handleMessageFromServerUI("CantShowShopper");
 				break;
 			}
-				
+			
+		case "AddItem":
+			Item item=new Item(Integer.parseInt(detail[1]),detail[2],Integer.parseInt(detail[3]),Double.parseDouble(detail[4]),detail[5]);
+			try {
+				boolean flag=item.addItem();
+				if(flag)
+				this.handleMessageFromServerUI("Item has been Added");
+				else 
+					this.handleMessageFromServerUI("Item already exist");
+				break;
+
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				this.handleMessageFromServerUI("erroe adding item!");
+				e.printStackTrace();
+				break;
 			}
 			
+		case "DeleteItem":
+			
+			Item item1=new Item();
+			try {
+				item1.deleteItem(Integer.parseInt(detail[1]));
+				this.handleMessageFromServerUI("Item has been deleted");
+				break;
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				this.handleMessageFromServerUI("error deleting item");
+				e.printStackTrace();
+				break;
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				this.handleMessageFromServerUI("error deleting item");
+				e.printStackTrace();
+				break;
+			}
+			
+		case "EditItem":
+			int ItemId=Integer.parseInt(detail[1]);
+			Item item2=new Item(0,detail[2],Integer.parseInt(detail[3]),Double.parseDouble(detail[4]),detail[5]);
+			try {
+				item2.editItem(ItemId);
+				this.handleMessageFromServerUI("Item has been updated");
+				break;
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				this.handleMessageFromServerUI("error updating item");
+				break;
+			}
+			
+		case "ViewItem":
+			Item item3=new Item();
+			try {
+				String itemToclient=item3.viewItem(Integer.parseInt(detail[1]));
+				itemToclient="ShowItem%"+itemToclient;
+				System.out.println(itemToclient);
+				this.handleMessageFromServerUI(itemToclient);
+
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				this.handleMessageFromServerUI("error viewing item");
+				break;
+			} catch (ClassNotFoundException e) {
+				
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				this.handleMessageFromServerUI("error viewing item");
+				break;
+			}
+
+			
+
+			}
+		
+			
+		
+		
+		
 		
     }
 
