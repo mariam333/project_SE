@@ -13,7 +13,7 @@
    <children>
       <ImageView fitHeight="657.0" fitWidth="403.0" layoutX="2.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../../Pictures/Eclipphoto/pink.jpg" />
+            <Image url="@../../../test/resources/pink.jpg" />
          </image>
       </ImageView>
       <Label id="Welcome" layoutX="11.0" layoutY="34.0" prefHeight="47.0" prefWidth="381.0" text="Let's create your own product!">

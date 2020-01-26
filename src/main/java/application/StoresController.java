@@ -1,5 +1,5 @@
 package src.main.java.application;
 
-public class LoginContoller {
+public class StoresController {
 
 }
