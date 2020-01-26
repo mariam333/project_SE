@@ -17,7 +17,7 @@
    <children>
       <ImageView fitHeight="807.0" fitWidth="495.0" layoutX="195.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../project/proj_part3/wild-flowers-floral-wallpaper-mural-coloured.jpg" />
+            <Image url="@../../../test/resources/white.jpg" />
          </image>
       </ImageView>
       <Label layoutX="214.0" layoutY="5.0" prefHeight="55.0" prefWidth="256.0" text="Welcome to our shop" textFill="#f660f8">
@@ -25,7 +25,7 @@
             <Font name="Comic Sans MS Bold Italic" size="24.0" />
          </font>
       </Label>
-      <MenuButton fx:id="SortBy" layoutX="218.0" layoutY="118.0" mnemonicParsing="false" text="Sort By:" textFill="#a91271">
+      <MenuButton fx:id="SortBy" layoutX="218.0" layoutY="169.0" mnemonicParsing="false" text="Sort By:" textFill="#a91271">
         <items>
           <MenuItem fx:id="IDsort" mnemonicParsing="false" onAction="#sortByID" text="ID" />
           <MenuItem fx:id="priceSort" mnemonicParsing="false" onAction="#sortByPrice" text="Price" />
@@ -72,9 +72,14 @@
                   <Font name="Comic Sans MS Bold Italic" size="13.0" />
                </font>
             </Button>
+            <Label fx:id="usernameTxt" layoutX="48.0" layoutY="35.0" prefHeight="29.0" prefWidth="99.0" text="User Name">
+               <font>
+                  <Font name="Comic Sans MS Bold Italic" size="16.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
-      <TableView fx:id="catalog" layoutX="205.0" layoutY="189.0" onMouseClicked="#AddToCart" onSort="#SortBy" prefHeight="490.0" prefWidth="464.0" style="-fx-background-color: F3BCF4;">
+      <TableView fx:id="catalog" layoutX="209.0" layoutY="224.0" onMouseClicked="#AddToCart" onSort="#SortBy" prefHeight="490.0" prefWidth="464.0" style="-fx-background-color: F3BCF4;">
         <columns>
           <TableColumn fx:id="numCol" onEditCancel="#UpdatCounter" onEditCommit="#displayNum" onEditStart="#startCounter" prefWidth="61.999969482421875" text="number" />
           <TableColumn fx:id="NameCol" onEditCommit="#displayName" prefWidth="89.3333740234375" text="Flower's Name" />
@@ -84,5 +89,14 @@
             <TableColumn fx:id="pictureCol" onEditCommit="#displayPic" prefWidth="132.666748046875" text="Picture" />
         </columns>
       </TableView>
+      <MenuButton fx:id="choseStore" layoutX="218.0" layoutY="116.0" mnemonicParsing="false" onAction="#viewStoreCatalog" prefHeight="31.0" prefWidth="123.0" text="chose store" textFill="#a91271">
+        <items>
+          <MenuItem mnemonicParsing="false" text="Main Store" />
+          <MenuItem mnemonicParsing="false" text="Haifa's branch" />
+        </items>
+         <font>
+            <Font name="Comic Sans MS Bold Italic" size="14.0" />
+         </font>
+      </MenuButton>
    </children>
 </AnchorPane>
