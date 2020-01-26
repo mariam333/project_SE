@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="src.main.java.application.OrderReportController">
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.application.OrderReportController">
    <children>
       <AnchorPane layoutY="-1.0">
          <children>
@@ -32,7 +31,7 @@
                   </BarChart>
                   <AnchorPane prefHeight="117.0" prefWidth="609.0" style="-fx-background-color: #000000;">
                      <children>
-                        <Label layoutX="21.0" layoutY="63.0" prefHeight="66.0" prefWidth="386.0" text="6/2020" textFill="#f8f4f4">
+                        <Label fx:id="dateofRep" layoutX="21.0" layoutY="63.0" prefHeight="66.0" prefWidth="386.0" text="6/2020" textFill="#f8f4f4">
                            <font>
                               <Font name="Kristen ITC" size="42.0" />
                            </font>
@@ -47,7 +46,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <Button alignment="TOP_LEFT" layoutX="534.0" layoutY="43.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="83.0" style="-fx-background-color: #070707;" text="Back" textFill="#f8f4f4">
+            <Button alignment="TOP_LEFT" layoutX="534.0" layoutY="43.0" mnemonicParsing="false" onAction="#BacktoAllComp" prefHeight="45.0" prefWidth="83.0" style="-fx-background-color: #070707;" text="Back" textFill="#f8f4f4">
                <font>
                   <Font name="Berlin Sans FB" size="21.0" />
                </font>

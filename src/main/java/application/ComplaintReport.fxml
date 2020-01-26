@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="src.main.java.application.ComplaintReportController">
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.application.ComplaintReportController">
    <children>
       <AnchorPane prefHeight="567.0" prefWidth="593.0">
          <children>
@@ -22,7 +21,7 @@
                         <Font name="Kristen ITC" size="42.0" />
                      </font>
                   </Label>
-                  <Label layoutX="27.0" layoutY="58.0" prefHeight="66.0" prefWidth="159.0" text="6/2020" textFill="#f8f4f4">
+                  <Label fx:id="DateofRep" layoutX="27.0" layoutY="58.0" prefHeight="66.0" prefWidth="159.0" text="6/2020" textFill="#f8f4f4">
                      <font>
                         <Font name="Kristen ITC" size="42.0" />
                      </font>
@@ -34,7 +33,7 @@
                   <Image url="@../../../../../../../Downloads/simplephoto.jpeg" />
                </image>
             </ImageView>
-            <BarChart layoutX="-7.0" layoutY="183.0" prefHeight="375.0" prefWidth="378.0">
+            <BarChart fx:id="diagcomp" layoutX="-7.0" layoutY="183.0" prefHeight="375.0" prefWidth="378.0">
                <xAxis>
                   <CategoryAxis prefHeight="27.0" prefWidth="321.0" side="BOTTOM" />
                </xAxis>
@@ -42,7 +41,7 @@
                   <NumberAxis side="LEFT" />
                </yAxis>
             </BarChart>
-            <Button alignment="TOP_LEFT" layoutX="486.0" layoutY="506.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="83.0" style="-fx-background-color: #000000;" text="Back" textFill="#f8f4f4">
+            <Button alignment="TOP_LEFT" layoutX="486.0" layoutY="506.0" mnemonicParsing="false" onAction="#BacktoAllComp" prefHeight="45.0" prefWidth="83.0" style="-fx-background-color: #000000;" text="Back" textFill="#f8f4f4">
                <font>
                   <Font name="Berlin Sans FB" size="21.0" />
                </font>

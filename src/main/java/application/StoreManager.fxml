@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="src.main.java.application.StoreManagerController">
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.application.StoreManagerController">
    <children>
       <AnchorPane layoutX="10.0" layoutY="10.0">
          <children>
@@ -66,34 +65,24 @@
                         <Image url="@../../../../../../../Downloads/pink.jpg" />
                      </image>
                   </ImageView>
-                  <Label layoutX="35.0" layoutY="23.0" prefHeight="41.0" prefWidth="104.0" text="ID of store:">
+                  <Label layoutX="35.0" layoutY="33.0" prefHeight="41.0" prefWidth="74.0" text="Pranch:">
                      <font>
                         <Font name="Kristen ITC" size="17.0" />
                      </font>
                   </Label>
-                  <Label layoutX="35.0" layoutY="64.0" prefHeight="41.0" prefWidth="59.0" text="Place:">
-                     <font>
-                        <Font name="Kristen ITC" size="17.0" />
-                     </font>
-                  </Label>
-                  <TableView layoutX="48.0" layoutY="114.0" prefHeight="478.0" prefWidth="383.0">
+                  <TableView fx:id="Reports" layoutX="48.0" layoutY="114.0" prefHeight="478.0" prefWidth="383.0">
                      <columns>
-                        <TableColumn prefWidth="126.0" text="Order Report" />
-                        <TableColumn prefWidth="132.0" text="Complaint Report" />
-                        <TableColumn minWidth="0.0" prefWidth="124.0" text="Payment Report" />
+                        <TableColumn fx:id="OrderReport" prefWidth="126.0" text="Order Report" />
+                        <TableColumn fx:id="ComplaintReport" prefWidth="132.0" text="Complaint Report" />
+                        <TableColumn fx:id="PaymentReport" minWidth="0.0" prefWidth="124.0" text="Payment Report" />
                      </columns>
                   </TableView>
-                  <Label layoutX="94.0" layoutY="64.0" prefHeight="41.0" prefWidth="104.0" text="haifa">
+                  <Label fx:id="Pranch" layoutX="103.0" layoutY="33.0" prefHeight="41.0" prefWidth="104.0" text="_">
                      <font>
                         <Font name="Kristen ITC" size="17.0" />
                      </font>
                   </Label>
-                  <Label layoutX="139.0" layoutY="23.0" prefHeight="41.0" prefWidth="104.0" text="t65f">
-                     <font>
-                        <Font name="Kristen ITC" size="17.0" />
-                     </font>
-                  </Label>
-                  <Button alignment="TOP_LEFT" layoutX="348.0" layoutY="42.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="83.0" style="-fx-background-color: #000000;" text="Back" textFill="#f8f4f4">
+                  <Button alignment="TOP_LEFT" layoutX="348.0" layoutY="42.0" mnemonicParsing="false" onAction="#Backtologin" prefHeight="45.0" prefWidth="83.0" style="-fx-background-color: #000000;" text="Back" textFill="#f8f4f4">
                      <font>
                         <Font name="Berlin Sans FB" size="21.0" />
                      </font>
