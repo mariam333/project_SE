@@ -143,7 +143,7 @@ public class EchoServer extends AbstractServer
 		//SignUp mar 123 mar@gmail.com 0529761893 
 		case "SignUp":
 			
-			System.out.println("hhhhhhhhh");
+			
 			Shopper shopper=new Shopper(detail[1],detail[2],detail[3],Integer.parseInt(detail[4]),Integer.parseInt(detail[5]),Integer.parseInt(detail[6]),Integer.parseInt(detail[7]));
 			try {
 				if (shopper.addShopper() == true) {
@@ -225,7 +225,6 @@ public class EchoServer extends AbstractServer
 			Item item3=new Item();
 			try {
 				String itemToclient=item3.viewItem(Integer.parseInt(detail[1]));
-				itemToclient="ShowItem%"+itemToclient;
 				System.out.println(itemToclient);
 				this.handleMessageFromServerUI(itemToclient);
 
@@ -243,13 +242,45 @@ public class EchoServer extends AbstractServer
 			}
 
 			
+	case "ShowCatalog":
+		Item item4=new Item();
+		try {
+			String catalogToclient=item4.showCatalog(Integer.parseInt(detail[1]),detail[2].charAt(0));
+			System.out.println(catalogToclient);
+			this.handleMessageFromServerUI(catalogToclient);
 
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			this.handleMessageFromServerUI("error viewing item");
+			break;
+		}
+		
+		
+	case "Discount":
+		Item item5=new Item();
+		try {
+			String s;
+			boolean f=item5.discount(Integer.parseInt(detail[1]),Double.parseDouble(detail[2]));
+			if(f) {  s="item discounted";
+			System.out.println(s);
 			}
+			else 
+				s="error";
+				
+			this.handleMessageFromServerUI(s);
+
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			this.handleMessageFromServerUI("error viewing item");
+			break;
+		}
+	
+		}
 		
-			
 		
-		
-		
+
 		
     }
 
