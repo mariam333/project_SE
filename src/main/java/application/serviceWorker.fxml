@@ -15,7 +15,7 @@
    <children>
       <ImageView fitHeight="600.0" fitWidth="599.0" layoutX="204.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../project/proj_part3/3024713.jpg" />
+            <Image url="@../../../test/resources/blue.jpg" />
          </image>
       </ImageView>
       <Label layoutX="210.0" layoutY="-1.0" prefHeight="29.0" prefWidth="222.0" text="Complaints Table">

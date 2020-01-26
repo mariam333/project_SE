@@ -14,7 +14,7 @@
    <children>
       <ImageView fitHeight="675.0" fitWidth="766.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../project/proj_part3/3024713.jpg" />
+            <Image url="@../../../test/resources/blue.jpg" />
          </image>
       </ImageView>
       <BorderPane layoutX="20.0" layoutY="45.0" prefHeight="583.0" prefWidth="633.0" style="-fx-background-color: A5E8F4;">
