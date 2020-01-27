@@ -54,7 +54,7 @@ public class OrderReportController {
 		app_stage.show();
 	}
     
-    void orderssdata(String Month1,String store1) {
+    void ordersdata(String Month1,String store1) {
    	 dateofRep.setText(Month1);
    	 String message = "order#" + "report#" + store1 + "#" + month1;
 		Connect.client.handleMessageFromClientUI(message);
@@ -64,7 +64,7 @@ public class OrderReportController {
 		
 			 final CategoryAxis xAxis = new CategoryAxis();
 		        final NumberAxis yAxis = new NumberAxis();
-			diag_pay= new BarChart<String,String>(xAxis,yAxis);
+			diagord= new BarChart<String,String>(xAxis,yAxis);
 			xAxis.setLabel("Kind");       
 	        yAxis.setLabel("amount");
 	        XYChart.Series series1 = new XYChart.Series();
@@ -72,7 +72,7 @@ public class OrderReportController {
 	        series.getData().add(new XYChart.Data(kinds[i], amounts[i]));
 	        }
 	       // Scene scene  = new Scene(bc,800,600);
-	        diag_pay.getData().addAll(series1);
+	        diagord.getData().addAll(series1);
 	       // stage.setScene(scene);
 	       // stage.show();
 		

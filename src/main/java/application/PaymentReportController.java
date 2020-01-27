@@ -54,7 +54,7 @@ public class PaymentReportController {
 		app_stage.show();
 	}
     
-     void comlaintdata(String Month1,String store1) {
+     void paymentdata(String Month1,String store1) {
     	 dateofcomp.setText(Month1);
     	 String message = "payment#" + "complaint#" + store1 + "#" + month1;
  		Connect.client.handleMessageFromClientUI(message);

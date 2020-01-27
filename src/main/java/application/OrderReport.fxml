@@ -21,7 +21,7 @@
                         <Image url="@../../../../../../../Downloads/tmakxoprcnrpx7qlgxrt.jpg" />
                      </image>
                   </ImageView>
-                  <BarChart layoutX="14.0" layoutY="133.0" prefHeight="352.0" prefWidth="428.0">
+                  <BarChart fx:id="diagord" layoutX="14.0" layoutY="133.0" prefHeight="352.0" prefWidth="428.0">
                      <xAxis>
                         <CategoryAxis side="BOTTOM" />
                      </xAxis>

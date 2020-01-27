@@ -82,7 +82,7 @@
                         <Font name="Kristen ITC" size="17.0" />
                      </font>
                   </Label>
-                  <Button alignment="TOP_LEFT" layoutX="348.0" layoutY="42.0" mnemonicParsing="false" onAction="#Backtologin" prefHeight="45.0" prefWidth="83.0" style="-fx-background-color: #000000;" text="Back" textFill="#f8f4f4">
+                  <Button alignment="TOP_LEFT" layoutX="327.0" layoutY="42.0" mnemonicParsing="false" onAction="#Backtologin" prefHeight="45.0" prefWidth="104.0" style="-fx-background-color: #000000;" text="Sign out" textFill="#f8f4f4">
                      <font>
                         <Font name="Berlin Sans FB" size="21.0" />
                      </font>
