@@ -4,12 +4,28 @@
 
 package src.main.java.application;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javax.swing.JOptionPane;
+
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import src.application.Image;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+
+
+
+
 
 public class CustomerProfileController {
 
@@ -61,51 +77,200 @@ public class CustomerProfileController {
     @FXML // fx:id="Date"
     private TextField Date; // Value injected by FXMLLoader
 
-//    public void setID(String ID1) {
-//    	ID.setText(ID1);
-//    }
-    public void setID() {
-    ID.setText("hh");}
-    public void setName(String Name1) {
-    	Name.setText(Name1);
+    String MyEmail = null;
+    public void SeTEmail(String theEmail) {
+		// TODO Auto-generated method stub
+		MyEmail = theEmail;
+	}
+    public void setInfo(String[] text) {
+    	ID.setText(text[0]);
+    	Name.setText(text[1]);
+    	phone.setText(text[2]);
+    	email.setText(text[3]);
+    	password.setText(text[4]);
+    	Visa_number.setText(text[5]);
+    	CVV.setText(text[6]);
+       	Date.setText(text[7]);
+    	refund.setText(text[8]);
     }
-    public void setphone(String phone1) {
-    	phone.setText(phone1);
-    }
-    public void setemail(String email1) {
-    	email.setText(email1);
-    }
-    public void setpassword(String password1) {
-    	password.setText(password1);
-    }
-    public void setVisa_number(String Visa_number1) {
-    	Visa_number.setText(Visa_number1);
-    }
-    public void setCVV(String CVV1) {
-    	CVV.setText(CVV1);
-    }
-    public void setDate(String Date1) {
-    	Date.setText(Date1);
-    }
-    public void setrefund(String refund1) {
-    	refund.setText(refund1);
-    }
-    @FXML // This method is called by the FXMLLoader when initialization is complete
-    void initialize() {
-        assert Myorders != null : "fx:id=\"Myorders\" was not injected: check your FXML file 'CustomerProfile.fxml'.";
-        assert filling_a_complaint != null : "fx:id=\"filling_a_complaint\" was not injected: check your FXML file 'CustomerProfile.fxml'.";
-        assert Change_pass != null : "fx:id=\"Change_pass\" was not injected: check your FXML file 'CustomerProfile.fxml'.";
-        assert email != null : "fx:id=\"email\" was not injected: check your FXML file 'CustomerProfile.fxml'.";
-        assert ID != null : "fx:id=\"ID\" was not injected: check your FXML file 'CustomerProfile.fxml'.";
-        assert refund != null : "fx:id=\"refund\" was not injected: check your FXML file 'CustomerProfile.fxml'.";
-        assert phone != null : "fx:id=\"phone\" was not injected: check your FXML file 'CustomerProfile.fxml'.";
-        assert back != null : "fx:id=\"back\" was not injected: check your FXML file 'CustomerProfile.fxml'.";
-        assert SaveChanges != null : "fx:id=\"SaveChanges\" was not injected: check your FXML file 'CustomerProfile.fxml'.";
-        assert password != null : "fx:id=\"password\" was not injected: check your FXML file 'CustomerProfile.fxml'.";
-        assert Name != null : "fx:id=\"Name\" was not injected: check your FXML file 'CustomerProfile.fxml'.";
-        assert Visa_number != null : "fx:id=\"Visa_number\" was not injected: check your FXML file 'CustomerProfile.fxml'.";
-        assert CVV != null : "fx:id=\"CVV\" was not injected: check your FXML file 'CustomerProfile.fxml'.";
-        assert Date != null : "fx:id=\"Date\" was not injected: check your FXML file 'CustomerProfile.fxml'.";
+	@FXML
+	void Backtocatalog(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("HomePage.fxml"));
+		AnchorPane root = (AnchorPane) loader.load();
+		HomePage user = loader.getController();
+//		Image im = new Image("images/background.jpg");info to hala
+//		user.setimage(im);
+//		user.set(MyEmail);
+		Scene regist = new Scene(root);
+		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		app_stage.setScene(regist);
+		app_stage.show();
+	}
+	@FXML
+	void CVVEdit(ActionEvent event) {
+		String cvv = CVV.getText();
+		if (cvv.length() != 3 || (!cvv.matches("[0-9]+"))) {
+			JOptionPane.showMessageDialog(null, "Please enter correct cvv number ");
+		} else {
+			CVV.setText(cvv);
+			String message = "Edit#" + "CVV#" + MyEmail + "#" + cvv;
+			Connect.client.handleMessageFromClientUI(message);
+			if ("Editing Done".equals(Connect.client.servermsg))
+				JOptionPane.showMessageDialog(null, "Editing Done Successfully ");
+			else if ("Editing Failed!".equals(Connect.client.servermsg)) {
+				JOptionPane.showMessageDialog(null, "Editing Failed! ");
+			}
+		}
+	}
+	@FXML
+	void EmailEdit(ActionEvent event) {
+		String newEmail = email.getText();
+		if (!(newEmail.contains("@hotmail.com")) && !(newEmail.contains("@gmail.com"))) {
+			JOptionPane.showMessageDialog(null, "Please enter correct mail ");
+		} else {
+			email.setText(newEmail);
 
-    }
+			String message = "Edit#" + "Email#" + MyEmail + "#" + newEmail;
+			MyEmail = newEmail;
+			Connect.client.handleMessageFromClientUI(message);
+			if ("Editing Done".equals(Connect.client.servermsg))
+				JOptionPane.showMessageDialog(null, "Editing Done Successfully ");
+			else if ("Editing Failed!".equals(Connect.client.servermsg)) {
+				JOptionPane.showMessageDialog(null, "Editing Failed! ");
+			}
+		}
+
+	}
+	@FXML
+	void NameEdit(ActionEvent event) {
+		String name = Name.getText();
+		Name.setText(name);
+		String message = "Edit#" + "Name#" + MyEmail + "#" + name;
+		Connect.client.handleMessageFromClientUI(message);
+		if ("Editing Done".equals(Connect.client.servermsg))
+			JOptionPane.showMessageDialog(null, "Editing Done Successfully ");
+		else if ("Editing Failed!".equals(Connect.client.servermsg)) {
+			JOptionPane.showMessageDialog(null, "Editing Failed! ");
+		}
+	}
+	
+	@FXML
+	void IDEdit(ActionEvent event) {
+		String id = ID.getText();
+		if (id.length() != 9 || (!id.matches("[0-9]+"))) {
+			JOptionPane.showMessageDialog(null, "Please enter correct id ");
+		} else {
+			ID.setText(id);
+			String message = "Edit#" + "ID#" + MyEmail + "#" + id;
+			Connect.client.handleMessageFromClientUI(message);
+			if ("Editing Done".equals(Connect.client.servermsg))
+				JOptionPane.showMessageDialog(null, "Editing Done Successfully ");
+			else if ("Editing Failed!".equals(Connect.client.servermsg)) {
+				JOptionPane.showMessageDialog(null, "Editing Failed! ");
+			}
+		}
+	}
+	
+	@FXML
+	void PassEdit(ActionEvent event) {
+		String pass = password.getText();
+
+		password.setText(pass);
+		String message = "Edit#" + "password#" + MyEmail + "#" + pass;
+		Connect.client.handleMessageFromClientUI(message);
+		if ("Editing Done".equals(Connect.client.servermsg))
+			JOptionPane.showMessageDialog(null, "Editing Done Successfully ");
+		else if ("Editing Failed!".equals(Connect.client.servermsg)) {
+			JOptionPane.showMessageDialog(null, "Editing Failed! ");
+		}
+	}
+	
+	@FXML
+	void PhoneEdit(ActionEvent event) {
+		String tel = phone.getText();
+		if (tel.length() != 10 || !(tel.matches("(05[0-9]+)"))) {
+			JOptionPane.showMessageDialog(null, "Please enter correct phone number ");
+		} else {
+			phone.setText(tel);
+			String message = "Edit#" + "Tel#" + MyEmail + "#" + tel;
+			Connect.client.handleMessageFromClientUI(message);
+			if ("Editing Done".equals(Connect.client.servermsg))
+				JOptionPane.showMessageDialog(null, "Editing Done Successfully ");
+			else if ("Editing Failed!".equals(Connect.client.servermsg)) {
+				JOptionPane.showMessageDialog(null, "Editing Failed! ");
+			}
+		}
+
+	}
+	@FXML
+	void DateEdit(ActionEvent event) {
+		String date = Date.getText();
+		if (date.length() != 5 || (!date.matches("(1[0-2]|0[1-9])/(2[0-9])"))) {
+			JOptionPane.showMessageDialog(null, "Please enter correct date number ");
+		} else {
+			Date.setText(date);
+			String message = "Edit#" + "VisaDate#" + MyEmail + "#" + date;
+			Connect.client.handleMessageFromClientUI(message);
+			if ("Editing Done".equals(Connect.client.servermsg))
+				JOptionPane.showMessageDialog(null, "Editing Done Successfully ");
+			else if ("Editing Failed!".equals(Connect.client.servermsg)) {
+				JOptionPane.showMessageDialog(null, "Editing Failed! ");
+			}
+		}
+
+	}
+
+	@FXML
+	void VisaEdit(ActionEvent event) {
+		String Visa = Visa_number.getText();
+		if (Visa.length() != 16 || (!Visa.matches("[0-9]+"))) {
+			JOptionPane.showMessageDialog(null, "Please enter correct visa number ");
+		} else {
+			Visa_number.setText(Visa);
+			String message = "Edit#" + "VisaNum#" + MyEmail + "#" + Visa;
+			Connect.client.handleMessageFromClientUI(message);
+			if ("Editing Done".equals(Connect.client.servermsg))
+				JOptionPane.showMessageDialog(null, "Editing Done Successfully ");
+			else if ("Editing Failed!".equals(Connect.client.servermsg)) {
+				JOptionPane.showMessageDialog(null, "Editing Failed! ");
+			}
+		}
+
+	}
+	
+	@FXML
+	void Myorders(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("OrdersList.fxml"));
+		AnchorPane root = (AnchorPane) loader.load();
+		OrdersList user = loader.getController();
+//		Image im = new Image("images/background.jpg");to hala
+//		user.setimage(im);
+//		user.set(MyEmail);
+		Scene regist = new Scene(root);
+		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		app_stage.setScene(regist);
+		app_stage.show();
+	}
+
+	@FXML
+	void filling_a_complaint(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("Complaints.fxml"));
+		AnchorPane root = (AnchorPane) loader.load();
+		Complaints user = loader.getController();
+//		Image im = new Image("images/background.jpg");to manar
+//		user.setimage(im);
+//		user.set(MyEmail);
+		Scene regist = new Scene(root);
+		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		app_stage.setScene(regist);
+		app_stage.show();
+	}
+
+	
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+
+	}
+
 }
