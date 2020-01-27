@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="src.main.java.application.StoresController">
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.application.StoresController">
    <children>
       <AnchorPane layoutY="-1.0">
          <children>
@@ -23,7 +22,7 @@
                               <Image url="@../../../../../../../Downloads/flower_f2.jpeg" />
                            </image>
                         </ImageView>
-                        <Button fx:id="back" alignment="TOP_LEFT" layoutX="450.0" layoutY="676.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="79.0" style="-fx-background-color: #000000;" text="Back" textFill="#f8f4f4">
+                        <Button fx:id="back" alignment="TOP_LEFT" layoutX="435.0" layoutY="676.0" mnemonicParsing="false" onAction="#signup" prefHeight="45.0" prefWidth="94.0" style="-fx-background-color: #000000;" text="sign up" textFill="#f8f4f4">
                            <font>
                               <Font name="Berlin Sans FB" size="21.0" />
                            </font>
@@ -38,7 +37,7 @@
                               </CheckBox>
                            </children>
                         </AnchorPane>
-                        <Button layoutX="127.0" layoutY="668.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="94.0" text="view">
+                        <Button layoutX="127.0" layoutY="668.0" mnemonicParsing="false" onAction="#view" prefHeight="53.0" prefWidth="94.0" text="view">
                            <font>
                               <Font name="Book Antiqua" size="17.0" />
                            </font>

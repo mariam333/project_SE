@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -10,8 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="src.main.java.application.CustomerProfileController">
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.application.CustomerProfileController">
    <children>
       <AnchorPane layoutY="-8.0" prefHeight="515.0" prefWidth="771.0">
          <children>
@@ -26,17 +26,12 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Button fx:id="Myorders" alignment="TOP_LEFT" layoutY="150.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="236.0" style="-fx-background-color: #66145c;" text="My orders" textFill="#f8f4f4">
+                  <Button fx:id="Myorders" alignment="TOP_LEFT" layoutY="150.0" mnemonicParsing="false" onAction="#Myorders" prefHeight="35.0" prefWidth="236.0" style="-fx-background-color: #66145c;" text="My orders" textFill="#f8f4f4">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="filling_a_complaint" alignment="TOP_LEFT" layoutY="186.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="236.0" style="-fx-background-color: #66145c;" text="Filing a complaint" textFill="#f5f2f2">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="Change_pass" alignment="TOP_LEFT" layoutX="3.0" layoutY="221.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="236.0" style="-fx-background-color: #66145c;" text="Change my password" textFill="#fffafa">
+                  <Button fx:id="filling_a_complaint" alignment="TOP_LEFT" layoutY="186.0" mnemonicParsing="false" onAction="#filling_a_complaint" prefHeight="35.0" prefWidth="236.0" style="-fx-background-color: #66145c;" text="Filing a complaint" textFill="#f5f2f2">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -66,11 +61,19 @@
                               <Font name="Kristen ITC" size="13.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="ID" layoutX="58.0" layoutY="173.0" promptText="ID" style="-fx-background-color: #f5f0f2;">
+                        <TextField fx:id="ID" layoutX="48.0" layoutY="174.0" prefHeight="26.0" prefWidth="178.0" promptText="ID" style="-fx-background-color: #f5f0f2;">
                            <font>
                               <Font name="Kristen ITC" size="14.0" />
                            </font>
                         </TextField>
+                        <Button alignment="TOP_LEFT" layoutX="215.0" layoutY="179.0" mnemonicParsing="false" onAction="#IDEdit" prefHeight="21.0" prefWidth="56.0" style="-fx-background-color: #8c648f;" text="edit" textFill="#f8f4f4">
+                           <font>
+                              <Font name="Berlin Sans FB" size="14.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                        </Button>
                      </children>
                   </Pane>
                   <Label layoutX="2.0" layoutY="250.0" prefHeight="57.0" prefWidth="83.0" text="E-mail:">
@@ -93,7 +96,7 @@
                         <Font size="11.0" />
                      </font>
                   </Button>
-                  <TextField fx:id="refund" layoutX="404.0" layoutY="398.0" prefHeight="57.0" prefWidth="71.0" promptText="\$" text="60$">
+                  <TextField fx:id="refund" layoutX="404.0" layoutY="398.0" prefHeight="57.0" prefWidth="71.0" promptText="\$">
                      <font>
                         <Font name="Kristen ITC" size="22.0" />
                      </font>
@@ -108,12 +111,7 @@
                         <Font name="Kristen ITC" size="14.0" />
                      </font>
                   </TextField>
-                  <Button fx:id="back" alignment="TOP_LEFT" layoutX="9.0" layoutY="455.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="83.0" style="-fx-background-color: #000000;" text="Back" textFill="#f8f4f4">
-                     <font>
-                        <Font name="Berlin Sans FB" size="21.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="SaveChanges" alignment="TOP_LEFT" layoutX="292.0" layoutY="248.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="152.0" style="-fx-background-color: #000000;" text="save changes" textFill="#f8f4f4">
+                  <Button fx:id="Backtocatalog" alignment="TOP_LEFT" layoutX="9.0" layoutY="455.0" mnemonicParsing="false" onAction="#Backtocatalog" prefHeight="45.0" prefWidth="83.0" style="-fx-background-color: #000000;" text="Back" textFill="#f8f4f4">
                      <font>
                         <Font name="Berlin Sans FB" size="21.0" />
                      </font>
@@ -128,7 +126,7 @@
                         <Font name="Kristen ITC" size="14.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="Name" layoutX="51.0" layoutY="204.0" promptText="Name" style="-fx-background-color: #f5f0f2;">
+                  <TextField fx:id="Name" layoutX="51.0" layoutY="205.0" prefHeight="33.0" prefWidth="90.0" promptText="Name" style="-fx-background-color: #f5f0f2;">
                      <font>
                         <Font name="Kristen ITC" size="14.0" />
                      </font>
@@ -148,7 +146,7 @@
                         <Font name="Kristen ITC" size="13.0" />
                      </font>
                   </Label>
-                  <Label layoutX="5.0" layoutY="375.0" prefHeight="57.0" prefWidth="83.0" text="Date:">
+                  <Label layoutX="5.0" layoutY="375.0" prefHeight="57.0" prefWidth="83.0" text=" Visa Date:">
                      <font>
                         <Font name="Kristen ITC" size="13.0" />
                      </font>
@@ -163,11 +161,49 @@
                         <Font name="Kristen ITC" size="14.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="Date" layoutX="40.0" layoutY="388.0" prefHeight="33.0" prefWidth="201.0" promptText="Date" style="-fx-background-color: #f5f0f2;">
+                  <TextField fx:id="Date" layoutX="83.0" layoutY="387.0" prefHeight="33.0" prefWidth="102.0" promptText="Date" style="-fx-background-color: #f5f0f2;">
                      <font>
                         <Font name="Kristen ITC" size="14.0" />
                      </font>
                   </TextField>
+                  <Button alignment="TOP_LEFT" layoutX="214.0" layoutY="396.0" mnemonicParsing="false" onAction="#DateEdit" prefHeight="21.0" prefWidth="56.0" style="-fx-background-color: #8c648f;" text="edit" textFill="#f8f4f4">
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="TOP_LEFT" layoutX="214.0" layoutY="363.0" mnemonicParsing="false" onAction="#CVVEdit" prefHeight="21.0" prefWidth="56.0" style="-fx-background-color: #8c648f;" text="edit" textFill="#f8f4f4">
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="TOP_LEFT" layoutX="214.0" layoutY="333.0" mnemonicParsing="false" onAction="#VisaEdit" prefHeight="21.0" prefWidth="56.0" style="-fx-background-color: #8c648f;" text="edit" textFill="#f8f4f4">
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="TOP_LEFT" layoutX="214.0" layoutY="303.0" mnemonicParsing="false" onAction="#PassEdit" prefHeight="21.0" prefWidth="56.0" style="-fx-background-color: #8c648f;" text="edit" textFill="#f8f4f4">
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="TOP_LEFT" layoutX="214.0" layoutY="273.0" mnemonicParsing="false" onAction="#EmailEdit" prefHeight="21.0" prefWidth="56.0" style="-fx-background-color: #8c648f;" text="edit" textFill="#f8f4f4">
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="TOP_LEFT" layoutX="215.0" layoutY="242.0" mnemonicParsing="false" onAction="#PhoneEdit" prefHeight="21.0" prefWidth="56.0" style="-fx-background-color: #8c648f;" text="edit" textFill="#f8f4f4">
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="TOP_LEFT" layoutX="214.0" layoutY="211.0" mnemonicParsing="false" onAction="#NameEdit" prefHeight="21.0" prefWidth="56.0" style="-fx-background-color: #8c648f;" text="edit" textFill="#f8f4f4">
+                     <font>
+                        <Font name="Berlin Sans FB" size="14.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Button>
                </children>
             </AnchorPane>
          </children>
