@@ -1,7 +1,4 @@
-// This file contains material supporting section 3.7 of the textbook:
-// "Object Oriented Software Engineering" and is issued under the open-source
-// license found at www.lloseng.com 
-
+import java.util.ArrayList;
 import java.io.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,9 +9,12 @@ import java.sql.Statement;
 
 import ocsf.server.*;
 import common.*;
-import models.Item;
+import models.SendEmail;
 import models.Person;
 import models.Shopper;
+import models.Sold;
+import models.Item;
+import models.Order;
 
 /**
  * This class overrides some of the methods in the abstract 
@@ -146,7 +146,7 @@ public class EchoServer extends AbstractServer
 		//SignUp mar 123 mar@gmail.com 0529761893 
 		case "SignUp":
 			
-			System.out.println("hhhhhhhhh");
+			
 			Shopper shopper=new Shopper(detail[1],detail[2],detail[3],Integer.parseInt(detail[4]),Integer.parseInt(detail[5]),Integer.parseInt(detail[6]),Integer.parseInt(detail[7]));
 			try {
 				if (shopper.addShopper() == true) {
@@ -227,7 +227,6 @@ public class EchoServer extends AbstractServer
 			Item item3=new Item();
 			try {
 				String itemToclient=item3.viewItem(Integer.parseInt(detail[1]));
-				itemToclient="ShowItem%"+itemToclient;
 				System.out.println(itemToclient);
 				this.handleMessageFromServerUI(itemToclient);
 
@@ -245,15 +244,194 @@ public class EchoServer extends AbstractServer
 			}
 
 			
+	case "ShowCatalog":
+		Item item4=new Item();
+		try {
+			String catalogToclient=item4.showCatalog(Integer.parseInt(detail[1]),detail[2].charAt(0));
+			System.out.println(catalogToclient);
+			this.handleMessageFromServerUI(catalogToclient);
 
-			}
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			this.handleMessageFromServerUI("error viewing item");
+			break;
+		}
+<<<<<<< HEAD:EchoServer.java
 		
+		
+	case "Discount":
+		Item item5=new Item();
+		try {
+			String s;
+			boolean f=item5.discount(Integer.parseInt(detail[1]),Double.parseDouble(detail[2]));
+			if(f) {  s="item discounted";
+			System.out.println(s);
+			}
+			else 
+				s="error";
+				
+			this.handleMessageFromServerUI(s);
+
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			this.handleMessageFromServerUI("error viewing item");
+			break;
+		}
+	
+		}
+=======
+		
+		
+	case "Discount":
+		Item item5=new Item();
+		try {
+			String s;
+			boolean f=item5.discount(Integer.parseInt(detail[1]),Double.parseDouble(detail[2]));
+			if(f) {  s="item discounted";
+			System.out.println(s);
+			}
+			else 
+				s="error";
+				
+			this.handleMessageFromServerUI(s);
+            break;
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			this.handleMessageFromServerUI("error viewing item");
+			break;
+			
+		}
+		
+	
+	
+	case "CreateOrder":
+		int storeId=Integer.parseInt(detail[1]);
+		int shoppedId=Integer.parseInt(detail[2]);
+	    String date=detail[3];
+		String orderingTime=detail[4];
+		int delivery=Integer.parseInt(detail[5]);
+		String deliveryAddress=detail[6];
+		String reciptionName=detail[7];
+		double supTime=Double.parseDouble(detail[8]);
+		double totalPrice=Double.parseDouble(detail[9]);
+
+		Order O=new Order(storeId,shoppedId,totalPrice,delivery,supTime, orderingTime, deliveryAddress,reciptionName,0, date);
+		
+			try {
+				ArrayList<Integer> ItemsId = new ArrayList<Integer>();
+				int i=10;
+			
+				while((detail[i]).indexOf('@')!=0 && i!=detail.length) {
+					
+					ItemsId.add(Integer.parseInt(detail[i]));   //adding id and next index quantity
+				ItemsId.add(Integer.parseInt(detail[i+1]));
+					i+=2;
+
+				}
+				System.out.println(i);
+				i++;
+				ArrayList<Sold> soldItem=new ArrayList<Sold>();
+
+				while(i!=detail.length)
+				{
+				
+					String type=detail[i];
+					String dominantColor=detail[i+1];
+					String priceRange=detail[i+2];
+					
+					
+					Sold I=new Sold(type,dominantColor,priceRange);
+					soldItem.add(I);
+					i+=3;
+					
+				}
+				
+				O.createOrder(ItemsId,soldItem);
+			
+				break;
+			}
+			
+			catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+				break;
+			}
+	
+		
+	case "DeleteOrder":
+		Order o2=new Order();
+			try {  
+				
+				o2.deleteOrder(Integer.parseInt(detail[1]), Double.parseDouble(detail[2]),Integer.parseInt(detail[3]));
+			break;
+				
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				break;
+			}
+	
+	
+>>>>>>> 3d757023551d3eaa669b92f58a92fb6bc00f6dc5:src/main/java/EchoServer.java
+		
+		case "ViewOrder":
+		Order Or=new Order();
+		String Mes="";
+		try {
+		 try {
+			Mes=Or.viewOrders(Integer.parseInt(detail[1]));
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			System.out.println(Mes);
+			this.handleMessageFromServerUI(Mes);
+
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			this.handleMessageFromServerUI("error viewing item");
+			break;
+		}
+		
+
+		
+		case "ViewAllOrders":
+			String mseg="";
+			Order o=new Order();
+			try {
+				msg=o.viewAllOrders();
+				this.handleMessageFromServerUI(mseg);
+
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				this.handleMessageFromServerUI("error viewing Orders ");
+				e.printStackTrace();
+				break;
+			}
+			
+			
+		case "Arrived":
+			try {
+				Order O5=new Order();
+				O5.Arrived(Integer.parseInt(detail[1]), detail[2]); // OrderId ,ShopperEmail
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			
 		
-		
-		
-		
+		}
     }
+    
+    
 
 
 //			if(msg.toString().charAt(0)=='S')

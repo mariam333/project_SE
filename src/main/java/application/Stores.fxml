@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="src.main.java.application.StoresController">
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.application.StoresController">
    <children>
       <AnchorPane layoutY="-1.0">
          <children>
@@ -18,19 +17,19 @@
                <children>
                   <AnchorPane layoutY="-1.0" prefHeight="106.0" prefWidth="564.0" style="-fx-background-color: #c949c1;">
                      <children>
-                        <ImageView fitHeight="853.0" fitWidth="538.0" layoutX="26.0" layoutY="-95.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="853.0" fitWidth="512.0" layoutX="52.0" layoutY="-95.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../../../../Downloads/flower_f2.jpeg" />
                            </image>
                         </ImageView>
-                        <Button fx:id="back" alignment="TOP_LEFT" layoutX="450.0" layoutY="676.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="79.0" style="-fx-background-color: #000000;" text="Back" textFill="#f8f4f4">
+                        <Button fx:id="back" alignment="TOP_LEFT" layoutX="435.0" layoutY="676.0" mnemonicParsing="false" onAction="#signup" prefHeight="45.0" prefWidth="94.0" style="-fx-background-color: #000000;" text="sign up" textFill="#f8f4f4">
                            <font>
                               <Font name="Berlin Sans FB" size="21.0" />
                            </font>
                         </Button>
-                        <AnchorPane layoutX="37.0" layoutY="98.0" prefHeight="516.0" prefWidth="345.0" style="-fx-background-color: #d99cd5;">
+                        <AnchorPane layoutX="1.0" prefHeight="758.0" prefWidth="347.0" style="-fx-background-color: #d99cd5;">
                            <children>
-                              <ScrollBar layoutX="324.0" orientation="VERTICAL" prefHeight="516.0" prefWidth="23.0" />
+                              <ScrollBar layoutX="324.0" orientation="VERTICAL" prefHeight="756.0" prefWidth="23.0" />
                               <CheckBox layoutX="8.0" layoutY="31.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="135.0" text="haifa store">
                                  <font>
                                     <Font name="Bodoni MT" size="18.0" />
@@ -38,18 +37,18 @@
                               </CheckBox>
                            </children>
                         </AnchorPane>
-                        <Button layoutX="127.0" layoutY="668.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="94.0" text="view">
+                        <Button layoutX="435.0" layoutY="433.0" mnemonicParsing="false" onAction="#view" prefHeight="53.0" prefWidth="94.0" text="view">
                            <font>
                               <Font name="Book Antiqua" size="17.0" />
                            </font>
                         </Button>
+                        <Label layoutX="348.0" layoutY="14.0" prefHeight="74.0" prefWidth="214.0" text="choose one or two stores">
+                           <font>
+                              <Font name="Kristen ITC" size="16.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
-                  <Label layoutX="31.0" layoutY="20.0" prefHeight="66.0" prefWidth="494.0" text="choose one or two stores">
-                     <font>
-                        <Font name="Kristen ITC" size="35.0" />
-                     </font>
-                  </Label>
                </children>
             </AnchorPane>
          </children>

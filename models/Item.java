@@ -1,6 +1,7 @@
-package models;
+package src.main.java.models;
 
 
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -16,6 +17,9 @@ public class Item {
 	int quantity;
 	double price;
 	String type;
+	String sale;
+	String image;
+	
 
 static private final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
 static private final String DB = "7VP6RBaQoU";
@@ -83,7 +87,7 @@ public boolean addItem() throws ClassNotFoundException {
 }
 
 
-public void deleteItem(int itemId) throws ClassNotFoundException {
+public boolean deleteItem(int itemId) throws ClassNotFoundException {
 	
 
 	Connection conn = null;
@@ -107,13 +111,14 @@ public void deleteItem(int itemId) throws ClassNotFoundException {
 		System.out.println("SQLException: " + se.getMessage());
         System.out.println("SQLState: " + se.getSQLState());
         System.out.println("VendorError: " + se.getErrorCode());
+        return false;
 	}
-
+return true;
 
 }
 
  
-public void editItem(int itemId) throws ClassNotFoundException {
+public boolean editItem(int itemId) throws ClassNotFoundException {
 
 
 	Connection conn = null;
@@ -142,9 +147,10 @@ public void editItem(int itemId) throws ClassNotFoundException {
 		System.out.println("SQLException: " + se.getMessage());
         System.out.println("SQLState: " + se.getSQLState());
         System.out.println("VendorError: " + se.getErrorCode());
+        return false;
 	}
 
-
+return true;
 }
 
 
@@ -190,5 +196,123 @@ public String viewItem(int itemId) throws ClassNotFoundException {
 }
 	
 }
+
+
+public String showCatalog(int storeId,char c)
+{
+	Connection conn = null;
+	Statement stmt = null;
+	String sql1="";
+	String msg="";
+	try {
+		Class.forName(JDBC_DRIVER);
+		conn = DriverManager.getConnection(DB_URL, USER, PASS);
+		stmt = conn.createStatement();
+		if(c=='n') 
+		 sql1="SELECT * FROM Item WHERE storeId="+storeId+" ORDER BY type" ;
+		else if(c=='p') 
+			sql1="SELECT * FROM Item WHERE storeId="+storeId+" ORDER BY price" ;
+		else 
+			sql1="SELECT * FROM Item WHERE storeId="+storeId+" ORDER BY (price*sale)" ;
+		
+		ResultSet rs = stmt.executeQuery(sql1);
+		while(rs.next())
+		{
+			String type=rs.getString("type");
+			String color=rs.getString("color");
+			int quantity=rs.getInt("quantity");
+			double price=rs.getDouble("price");
+			Blob image=rs.getBlob("image");
+			double sale=rs.getDouble("sale");
+			msg+=type+"%"+color+"%"+quantity+"%"+price+"%"+image+"%"+sale*price+"\n";
+			
+		}
+	
+
+		rs.close();
+		stmt.close();	
+	}catch (SQLException se) {
+		se.printStackTrace();
+		System.out.println("SQLException: " + se.getMessage());
+		System.out.println("SQLState: " + se.getSQLState());
+		System.out.println("VendorError: " + se.getErrorCode());
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	finally {
+		try {
+			if (stmt != null)
+				stmt.close();
+			if (conn != null)
+				conn.close();
+		} catch (SQLException se) {
+			se.printStackTrace();
+		}
+	}
+	System.out.println(msg);
+	return msg;	
+
+
+}
+
+	
+public boolean discount (int storeId,double d)
+
+{
+	
+<<<<<<< HEAD:models/Item.java
+	
+	
+=======
+
+>>>>>>> 3d757023551d3eaa669b92f58a92fb6bc00f6dc5:src/main/java/models/Item.java
+	Connection conn = null;
+	try {
+		try {
+			Class.forName(JDBC_DRIVER);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		conn = DriverManager.getConnection(DB_URL, USER, PASS);
+
+	
+   String sql = "UPDATE Item SET sale=?  WHERE storeId =?";
+	PreparedStatement update= conn.prepareStatement(sql);
+
+	update.setDouble(1, d);
+	update.setLong(2, storeId);
+
+	update.executeUpdate();
+
+    
+    }
+	catch (SQLException se) {
+		
+		se.printStackTrace();
+		System.out.println("SQLException: " + se.getMessage());
+        System.out.println("SQLState: " + se.getSQLState());
+        System.out.println("VendorError: " + se.getErrorCode());
+        return false;
+	}
+
+return true;
+	
+}
+	
+
+	
+	
+
+}
+
+
+
+
+
+
+
+	
+
 
  
