@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="choosItemToEdit" prefHeight="808.0" prefWidth="650.0" style="-fx-background-color: F4C8E2;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.chainWorkerController">
+<AnchorPane fx:id="choosItemToEdit" prefHeight="808.0" prefWidth="650.0" style="-fx-background-color: F4C8E2;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.application.chainWorkerController">
    <children>
       <ImageView fitHeight="818.0" fitWidth="548.0" layoutX="158.0" layoutY="-5.0" preserveRatio="true">
          <image>
@@ -28,17 +28,17 @@
          </font></CheckBox>
       <HBox layoutX="164.0" layoutY="114.0" prefHeight="31.0" prefWidth="200.0">
          <children>
-            <TextField disable="true" opacity="0.5" prefHeight="35.0" prefWidth="199.0" promptText="Color" style="-fx-background-color: A0F8F0;" />
+            <TextField fx:id="addcolor" disable="true" opacity="0.5" prefHeight="35.0" prefWidth="199.0" promptText="Color" style="-fx-background-color: A0F8F0;" />
          </children>
       </HBox>
       <HBox layoutX="164.0" layoutY="154.0" prefHeight="31.0" prefWidth="200.0">
          <children>
-            <TextField disable="true" opacity="0.5" prefHeight="35.0" prefWidth="199.0" promptText="price" style="-fx-background-color: A0F8F0;" />
+            <TextField fx:id="addprice" disable="true" opacity="0.5" prefHeight="35.0" prefWidth="199.0" promptText="price" style="-fx-background-color: A0F8F0;" />
          </children>
       </HBox>
       <HBox layoutX="164.0" layoutY="192.0" prefHeight="31.0" prefWidth="200.0">
          <children>
-            <TextField disable="true" opacity="0.5" prefHeight="33.0" prefWidth="199.0" promptText="Name" style="-fx-background-color: A0F8F0;" />
+            <TextField fx:id="addname" disable="true" opacity="0.5" prefHeight="33.0" prefWidth="199.0" promptText="Name" style="-fx-background-color: A0F8F0;" />
          </children>
       </HBox>
       <Button fx:id="AddItemButten" disable="true" layoutX="198.0" layoutY="249.0" mnemonicParsing="false" onAction="#addItem" opacity="0.5" prefHeight="37.0" prefWidth="103.0" style="-fx-background-color: A0F8F0;" text="Add Item">
@@ -48,8 +48,8 @@
       </Button>
       <HBox layoutX="164.0" layoutY="372.0" prefHeight="35.0" prefWidth="279.0">
          <children>
-            <TextField fx:id="DeletId" disable="true" onAction="#DeleteItem" opacity="0.5" prefHeight="37.0" prefWidth="199.0" promptText="insert Item ID" style="-fx-background-color: A0F8F0;" />
-            <Button mnemonicParsing="false" opacity="0.5" prefHeight="27.0" prefWidth="105.0" style="-fx-background-color: red;" text="Delet">
+            <TextField fx:id="DeletId" disable="true" opacity="0.5" prefHeight="37.0" prefWidth="199.0" promptText="insert Item ID" style="-fx-background-color: A0F8F0;" />
+            <Button fx:id="DeletItemButten" mnemonicParsing="false" onAction="#DeletItem" opacity="0.5" prefHeight="27.0" prefWidth="105.0" style="-fx-background-color: red;" text="Delet">
                <font>
                   <Font name="Comic Sans MS Bold Italic" size="16.0" />
                </font>
@@ -61,58 +61,58 @@
             <Font name="Comic Sans MS Bold Italic" size="14.0" />
          </font>
       </CheckBox>
-      <CheckBox fx:id="EditItem" layoutX="173.0" layoutY="436.0" mnemonicParsing="false" onAction="#enableDetales" prefHeight="31.0" prefWidth="117.0" style="-fx-background-color: #FAA8D8;" text="Edit Item">
+      <CheckBox fx:id="EditItem" layoutX="173.0" layoutY="436.0" mnemonicParsing="false" onAction="#enableEdit" prefHeight="31.0" prefWidth="117.0" style="-fx-background-color: #FAA8D8;" text="Edit Item">
          <font>
             <Font name="Comic Sans MS Bold Italic" size="14.0" />
          </font>
       </CheckBox>
-      <HBox layoutX="164.0" layoutY="567.0" prefHeight="31.0" prefWidth="199.0">
+      <HBox layoutX="164.0" layoutY="525.0" prefHeight="31.0" prefWidth="199.0">
          <children>
-            <TextField disable="true" opacity="0.5" prefHeight="31.0" prefWidth="201.0" promptText="new price" style="-fx-background-color: #fff;" />
+            <TextField fx:id="editid" disable="true" opacity="0.5" prefHeight="31.0" prefWidth="201.0" promptText="insert Item ID" style="-fx-background-color: #fff;" />
          </children></HBox>
       <HBox layoutX="163.0" layoutY="607.0" prefHeight="31.0" prefWidth="201.0">
          <children>
-            <TextField disable="true" opacity="0.5" prefHeight="31.0" prefWidth="201.0" promptText="on sale" style="-fx-background-color: #fff;" />
+            <TextField fx:id="editsale" disable="true" opacity="0.5" prefHeight="31.0" prefWidth="201.0" promptText="on sale" style="-fx-background-color: #fff;" />
          </children>
       </HBox>
-      <Button fx:id="choseItem" disable="true" layoutX="164.0" layoutY="477.0" mnemonicParsing="false" onAction="#GoToCatalog" opacity="0.5" prefHeight="37.0" prefWidth="161.0" style="-fx-background-color: #fff;" text="Chose Item\Items">
-         <font>
-            <Font name="Comic Sans MS Bold Italic" size="14.0" />
-         </font>
-      </Button>
       <HBox layoutX="163.0" layoutY="650.0" prefHeight="31.0" prefWidth="201.0">
          <children>
-            <TextField disable="true" opacity="0.5" prefHeight="36.0" prefWidth="199.0" promptText="new name" style="-fx-background-color: #fff;" />
+            <TextField fx:id="editname" disable="true" opacity="0.5" prefHeight="36.0" prefWidth="199.0" promptText="new name" style="-fx-background-color: #fff;" />
          </children>
       </HBox>
       <HBox layoutX="163.0" layoutY="690.0" prefHeight="31.0" prefWidth="201.0">
          <children>
-            <TextField disable="true" opacity="0.5" prefHeight="31.0" prefWidth="211.0" promptText="new color" style="-fx-background-color: #fff;" />
+            <TextField fx:id="editcolor" disable="true" opacity="0.5" prefHeight="31.0" prefWidth="211.0" promptText="new color" style="-fx-background-color: #fff;" />
          </children>
       </HBox>
-      <Button fx:id="Edit" disable="true" layoutX="193.0" layoutY="734.0" mnemonicParsing="false" onAction="#Edit" opacity="0.5" prefHeight="37.0" prefWidth="103.0" style="-fx-background-color: FAA8D8;" text="Edit">
+      <Button fx:id="EditItemButten" disable="true" layoutX="193.0" layoutY="734.0" mnemonicParsing="false" onAction="#EditItem" opacity="0.5" prefHeight="37.0" prefWidth="103.0" style="-fx-background-color: FAA8D8;" text="Edit">
          <font>
             <Font name="Comic Sans MS Bold Italic" size="14.0" />
          </font>
       </Button>
-      <Button disable="true" layoutX="421.0" layoutY="126.0" mnemonicParsing="false" opacity="0.5" prefHeight="48.0" prefWidth="161.0" style="-fx-background-color: #FAA8D8;" text="tap to insert image">
+      <Button fx:id="addimageBtn" disable="true" layoutX="421.0" layoutY="126.0" mnemonicParsing="false" onAction="#addImage" opacity="0.5" prefHeight="48.0" prefWidth="161.0" style="-fx-background-color: #FAA8D8;" text="tap to insert image">
          <font>
             <Font name="Comic Sans MS Bold Italic" size="14.0" />
          </font>
       </Button>
-      <TextField fx:id="SWuserName" layoutX="2.0" layoutY="57.0" onAction="#diplayuserName" prefHeight="47.0" prefWidth="155.0" promptText="user name" />
-      <Button fx:id="SWsignOut" layoutX="33.0" layoutY="150.0" mnemonicParsing="false" onAction="#signOut" prefHeight="39.0" prefWidth="93.0" text="sign out">
+      <TextField fx:id="email" layoutX="2.0" layoutY="57.0" prefHeight="47.0" prefWidth="155.0" />
+      <Button fx:id="logout" layoutX="33.0" layoutY="150.0" mnemonicParsing="false" onAction="#LogOut" prefHeight="39.0" prefWidth="93.0" text="sign out">
          <font>
             <Font name="Comic Sans MS Bold Italic" size="14.0" />
          </font>
       </Button>
-      <HBox layoutX="164.0" layoutY="523.0" prefHeight="34.0" prefWidth="263.0">
+      <HBox layoutX="164.0" layoutY="484.0" prefHeight="34.0" prefWidth="279.0">
          <children>
-            <TextField opacity="0.5" prefHeight="34.0" prefWidth="277.0" style="-fx-background-color: #fff;" text="fill one or more of the follwing fields">
+            <Label id="Welcome" fx:id="fill" disable="true" prefHeight="33.0" prefWidth="287.0" text="fill one or more of the follwing fields" textFill="#242222">
                <font>
-                  <Font name="Comic Sans MS Italic" size="14.0" />
+                  <Font name="Cambria Bold Italic" size="18.0" />
                </font>
-            </TextField>
+            </Label>
+         </children>
+      </HBox>
+      <HBox layoutX="164.0" layoutY="567.0" prefHeight="31.0" prefWidth="199.0">
+         <children>
+            <TextField fx:id="editprice" disable="true" opacity="0.5" prefHeight="31.0" prefWidth="201.0" promptText="new price" style="-fx-background-color: #fff;" />
          </children>
       </HBox>
    </children>

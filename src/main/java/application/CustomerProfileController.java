@@ -9,7 +9,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import src.application.Image;
+//import src.application.Image;
 
 public class CustomerProfileController {
 
