@@ -81,7 +81,7 @@
                         <Font name="Kristen ITC" size="13.0" />
                      </font>
                   </Label>
-                  <Label layoutY="224.0" prefHeight="57.0" prefWidth="83.0" text="phone:">
+                  <Label layoutX="-1.0" layoutY="214.0" prefHeight="57.0" prefWidth="83.0" text="phone:">
                      <font>
                         <Font name="Kristen ITC" size="14.0" />
                      </font>
@@ -91,11 +91,6 @@
                         <Font name="Kristen ITC" size="13.0" />
                      </font>
                   </Label>
-                  <Button alignment="TOP_LEFT" layoutX="307.0" layoutY="415.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="185.0" style="-fx-background-color: #c4c4c4;" text="for more details" textFill="#528bda" underline="true">
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                  </Button>
                   <TextField fx:id="refund" layoutX="404.0" layoutY="398.0" prefHeight="57.0" prefWidth="71.0" promptText="\$">
                      <font>
                         <Font name="Kristen ITC" size="22.0" />
@@ -116,7 +111,7 @@
                         <Font name="Berlin Sans FB" size="21.0" />
                      </font>
                   </Button>
-                  <Label layoutX="1.0" layoutY="278.0" prefHeight="57.0" prefWidth="83.0" text="Password:">
+                  <Label layoutX="2.0" layoutY="288.0" prefHeight="57.0" prefWidth="83.0" text="Password:">
                      <font>
                         <Font name="Kristen ITC" size="13.0" />
                      </font>

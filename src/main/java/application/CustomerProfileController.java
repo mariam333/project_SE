@@ -3,7 +3,7 @@
  */
 
 package src.main.java.application;
-
+import src.main.java.application.ConnectController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,11 +29,7 @@ import javafx.stage.Stage;
 
 public class CustomerProfileController {
 
-    @FXML // ResourceBundle that was given to the FXMLLoader
-    private ResourceBundle resources;
 
-    @FXML // URL location of the FXML file that was given to the FXMLLoader
-    private URL location;
 
     @FXML // fx:id="Myorders"
     private Button Myorders; // Value injected by FXMLLoader
@@ -82,22 +78,26 @@ public class CustomerProfileController {
 		// TODO Auto-generated method stub
 		MyEmail = theEmail;
 	}
-    public void setInfo(String[] text) {
-    	ID.setText(text[0]);
-    	Name.setText(text[1]);
-    	phone.setText(text[2]);
-    	email.setText(text[3]);
-    	password.setText(text[4]);
-    	Visa_number.setText(text[5]);
-    	CVV.setText(text[6]);
-       	Date.setText(text[7]);
-    	refund.setText(text[8]);
+    public void setInfo() {
+    	
+    	 String message = "details of shopper#"+MyEmail;
+ 		ConnectController.client.handleMessageFromClientUI(message);
+ 		String[] details = ConnectController.client.servermsg.split("#");
+ 		ID.setText(details[0]);
+     	Name.setText(details[1]);
+     	phone.setText(details[2]);
+     	email.setText(details[3]);
+     	password.setText(details[4]);
+     	Visa_number.setText(details[5]);
+     	CVV.setText(details[6]);
+        	Date.setText(details[7]);
+    	refund.setText(details[8]);
     }
 	@FXML
 	void Backtocatalog(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("HomePage.fxml"));
 		AnchorPane root = (AnchorPane) loader.load();
-		HomePage user = loader.getController();
+		HomepageController user = loader.getController();
 //		Image im = new Image("images/background.jpg");info to hala
 //		user.setimage(im);
 //		user.set(MyEmail);
@@ -114,10 +114,10 @@ public class CustomerProfileController {
 		} else {
 			CVV.setText(cvv);
 			String message = "Edit#" + "CVV#" + MyEmail + "#" + cvv;
-			Connect.client.handleMessageFromClientUI(message);
-			if ("Editing Done".equals(Connect.client.servermsg))
+			ConnectController.client.handleMessageFromClientUI(message);
+			if ("Editing Done".equals(ConnectController.client.servermsg))
 				JOptionPane.showMessageDialog(null, "Editing Done Successfully ");
-			else if ("Editing Failed!".equals(Connect.client.servermsg)) {
+			else if ("Editing Failed!".equals(ConnectController.client.servermsg)) {
 				JOptionPane.showMessageDialog(null, "Editing Failed! ");
 			}
 		}
@@ -132,10 +132,10 @@ public class CustomerProfileController {
 
 			String message = "Edit#" + "Email#" + MyEmail + "#" + newEmail;
 			MyEmail = newEmail;
-			Connect.client.handleMessageFromClientUI(message);
-			if ("Editing Done".equals(Connect.client.servermsg))
+			ConnectController.client.handleMessageFromClientUI(message);
+			if ("Editing Done".equals(ConnectController.client.servermsg))
 				JOptionPane.showMessageDialog(null, "Editing Done Successfully ");
-			else if ("Editing Failed!".equals(Connect.client.servermsg)) {
+			else if ("Editing Failed!".equals(ConnectController.client.servermsg)) {
 				JOptionPane.showMessageDialog(null, "Editing Failed! ");
 			}
 		}
@@ -146,10 +146,10 @@ public class CustomerProfileController {
 		String name = Name.getText();
 		Name.setText(name);
 		String message = "Edit#" + "Name#" + MyEmail + "#" + name;
-		Connect.client.handleMessageFromClientUI(message);
-		if ("Editing Done".equals(Connect.client.servermsg))
+		ConnectController.client.handleMessageFromClientUI(message);
+		if ("Editing Done".equals(ConnectController.client.servermsg))
 			JOptionPane.showMessageDialog(null, "Editing Done Successfully ");
-		else if ("Editing Failed!".equals(Connect.client.servermsg)) {
+		else if ("Editing Failed!".equals(ConnectController.client.servermsg)) {
 			JOptionPane.showMessageDialog(null, "Editing Failed! ");
 		}
 	}
@@ -162,10 +162,10 @@ public class CustomerProfileController {
 		} else {
 			ID.setText(id);
 			String message = "Edit#" + "ID#" + MyEmail + "#" + id;
-			Connect.client.handleMessageFromClientUI(message);
-			if ("Editing Done".equals(Connect.client.servermsg))
+			ConnectController.client.handleMessageFromClientUI(message);
+			if ("Editing Done".equals(ConnectController.client.servermsg))
 				JOptionPane.showMessageDialog(null, "Editing Done Successfully ");
-			else if ("Editing Failed!".equals(Connect.client.servermsg)) {
+			else if ("Editing Failed!".equals(ConnectController.client.servermsg)) {
 				JOptionPane.showMessageDialog(null, "Editing Failed! ");
 			}
 		}
@@ -177,10 +177,10 @@ public class CustomerProfileController {
 
 		password.setText(pass);
 		String message = "Edit#" + "password#" + MyEmail + "#" + pass;
-		Connect.client.handleMessageFromClientUI(message);
-		if ("Editing Done".equals(Connect.client.servermsg))
+		ConnectController.client.handleMessageFromClientUI(message);
+		if ("Editing Done".equals(ConnectController.client.servermsg))
 			JOptionPane.showMessageDialog(null, "Editing Done Successfully ");
-		else if ("Editing Failed!".equals(Connect.client.servermsg)) {
+		else if ("Editing Failed!".equals(ConnectController.client.servermsg)) {
 			JOptionPane.showMessageDialog(null, "Editing Failed! ");
 		}
 	}
@@ -193,10 +193,10 @@ public class CustomerProfileController {
 		} else {
 			phone.setText(tel);
 			String message = "Edit#" + "Tel#" + MyEmail + "#" + tel;
-			Connect.client.handleMessageFromClientUI(message);
-			if ("Editing Done".equals(Connect.client.servermsg))
+			ConnectController.client.handleMessageFromClientUI(message);
+			if ("Editing Done".equals(ConnectController.client.servermsg))
 				JOptionPane.showMessageDialog(null, "Editing Done Successfully ");
-			else if ("Editing Failed!".equals(Connect.client.servermsg)) {
+			else if ("Editing Failed!".equals(ConnectController.client.servermsg)) {
 				JOptionPane.showMessageDialog(null, "Editing Failed! ");
 			}
 		}
@@ -210,10 +210,10 @@ public class CustomerProfileController {
 		} else {
 			Date.setText(date);
 			String message = "Edit#" + "VisaDate#" + MyEmail + "#" + date;
-			Connect.client.handleMessageFromClientUI(message);
-			if ("Editing Done".equals(Connect.client.servermsg))
+			ConnectController.client.handleMessageFromClientUI(message);
+			if ("Editing Done".equals(ConnectController.client.servermsg))
 				JOptionPane.showMessageDialog(null, "Editing Done Successfully ");
-			else if ("Editing Failed!".equals(Connect.client.servermsg)) {
+			else if ("Editing Failed!".equals(ConnectController.client.servermsg)) {
 				JOptionPane.showMessageDialog(null, "Editing Failed! ");
 			}
 		}
@@ -228,10 +228,10 @@ public class CustomerProfileController {
 		} else {
 			Visa_number.setText(Visa);
 			String message = "Edit#" + "VisaNum#" + MyEmail + "#" + Visa;
-			Connect.client.handleMessageFromClientUI(message);
-			if ("Editing Done".equals(Connect.client.servermsg))
+			ConnectController.client.handleMessageFromClientUI(message);
+			if ("Editing Done".equals(ConnectController.client.servermsg))
 				JOptionPane.showMessageDialog(null, "Editing Done Successfully ");
-			else if ("Editing Failed!".equals(Connect.client.servermsg)) {
+			else if ("Editing Failed!".equals(ConnectController.client.servermsg)) {
 				JOptionPane.showMessageDialog(null, "Editing Failed! ");
 			}
 		}
@@ -242,7 +242,7 @@ public class CustomerProfileController {
 	void Myorders(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("OrdersList.fxml"));
 		AnchorPane root = (AnchorPane) loader.load();
-		OrdersList user = loader.getController();
+		OrdersListController user = loader.getController();
 //		Image im = new Image("images/background.jpg");to hala
 //		user.setimage(im);
 //		user.set(MyEmail);
@@ -256,7 +256,7 @@ public class CustomerProfileController {
 	void filling_a_complaint(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Complaints.fxml"));
 		AnchorPane root = (AnchorPane) loader.load();
-		Complaints user = loader.getController();
+		ComplaintsController user = loader.getController();
 //		Image im = new Image("images/background.jpg");to manar
 //		user.setimage(im);
 //		user.set(MyEmail);
