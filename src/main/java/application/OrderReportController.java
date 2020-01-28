@@ -16,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -24,7 +25,7 @@ import javafx.stage.Stage;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-
+import src.main.java.application.ConnectController;
 
 public class OrderReportController {
 
@@ -40,11 +41,17 @@ public class OrderReportController {
     @FXML // fx:id="diagord"
     private BarChart<?, ?> diagord; // Value injected by FXMLLoader
 
+    static String Store="";
+    
+    String MyEmail= null;
+    void setEmail(String Email) { MyEmail=Email;}
     @FXML
     void BacktoAllComp(ActionEvent event) throws IOException{
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("StoreManager.fxml"));
 		AnchorPane root = (AnchorPane) loader.load();
-		StoreManager user = loader.getController();
+		StoreManagerController user = loader.getController();
+		user.setEmail(MyEmail);
+		user.FullTable();
 //		Image im = new Image("images/background.jpg");to me all comp
 //		user.setimage(im);
 //		user.set(MyEmail);
@@ -56,20 +63,21 @@ public class OrderReportController {
     
     void ordersdata(String Month1,String store1) {
    	 dateofRep.setText(Month1);
-   	 String message = "order#" + "report#" + store1 + "#" + month1;
-		Connect.client.handleMessageFromClientUI(message);
-		String[] Msg = Connect.client.servermsg.split("@");
+	 Store= store1;
+   	 String message = "order#" + "report#" + store1 + "#" + Month1;
+		ConnectController.client.handleMessageFromClientUI(message);
+		String[] Msg = ConnectController.client.servermsg.split("@");
 		String[] kinds=Msg[0].split("#");
 		String[] amounts=Msg[1].split("#");
 		
 			 final CategoryAxis xAxis = new CategoryAxis();
-		        final NumberAxis yAxis = new NumberAxis();
+		        final CategoryAxis yAxis = new CategoryAxis();
 			diagord= new BarChart<String,String>(xAxis,yAxis);
 			xAxis.setLabel("Kind");       
 	        yAxis.setLabel("amount");
 	        XYChart.Series series1 = new XYChart.Series();
-	        for(int i=0;i<kinds.lenght;i++) {
-	        series.getData().add(new XYChart.Data(kinds[i], amounts[i]));
+	        for(int i=0;i<kinds.length;i++) {
+	        series1.getData().add(new XYChart.Data(kinds[i], amounts[i]));
 	        }
 	       // Scene scene  = new Scene(bc,800,600);
 	        diagord.getData().addAll(series1);

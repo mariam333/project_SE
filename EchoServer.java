@@ -258,6 +258,31 @@ public class EchoServer extends AbstractServer
 			this.handleMessageFromServerUI("error viewing item");
 			break;
 		}
+<<<<<<< HEAD:EchoServer.java
+		
+		
+	case "Discount":
+		Item item5=new Item();
+		try {
+			String s;
+			boolean f=item5.discount(Integer.parseInt(detail[1]),Double.parseDouble(detail[2]));
+			if(f) {  s="item discounted";
+			System.out.println(s);
+			}
+			else 
+				s="error";
+				
+			this.handleMessageFromServerUI(s);
+
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			this.handleMessageFromServerUI("error viewing item");
+			break;
+		}
+	
+		}
+=======
 		
 		
 	case "Discount":
@@ -351,6 +376,7 @@ public class EchoServer extends AbstractServer
 			}
 	
 	
+>>>>>>> 3d757023551d3eaa669b92f58a92fb6bc00f6dc5:src/main/java/EchoServer.java
 		
 		case "ViewOrder":
 		Order Or=new Order();
@@ -372,6 +398,7 @@ public class EchoServer extends AbstractServer
 			break;
 		}
 		
+
 		
 		case "ViewAllOrders":
 			String mseg="";

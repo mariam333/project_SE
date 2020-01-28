@@ -3,7 +3,7 @@
  */
 
 package src.main.java.application;
-
+import src.main.java.application.ConnectController;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -36,16 +36,11 @@ import javafx.util.Callback;
 
 public class StoreManagerController {
 
-    @FXML // ResourceBundle that was given to the FXMLLoader
-    private ResourceBundle resources;
-
-    @FXML // URL location of the FXML file that was given to the FXMLLoader
-    private URL location;
-
+   
     @FXML // fx:id="Reports"
-    private TableView<Data> Reports= new TableView<>(); // Value injected by FXMLLoader
+    private TableView<String> Reports= new TableView<>(); // Value injected by FXMLLoader
 
-    private final ObservableList<Data> tvObservableList = FXCollections.observableArrayList();//??
+    private final ObservableList<String> tvObservableList = FXCollections.observableArrayList();//??
     
     @FXML // fx:id="OrderReport"
     private TableColumn<String, Void> OrderReport =new TableColumn("Order Report"); // Value injected by FXMLLoader
@@ -58,13 +53,14 @@ public class StoreManagerController {
 
     @FXML // fx:id="Pranch"
     private Label Pranch; // Value injected by FXMLLoader
-
+   String MyEmail=null;
+    String Store=null;
    
     @FXML
 	void Backtologin(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
 		AnchorPane root = (AnchorPane) loader.load();
-		Login user = loader.getController();
+		LoginController user = loader.getController();
 //		Image im = new Image("images/background.jpg");info to hala
 //		user.setimage(im);
 //		user.set(MyEmail);
@@ -73,16 +69,22 @@ public class StoreManagerController {
 		app_stage.setScene(regist);
 		app_stage.show();
 	}
-    
-    void FullTable(String Store)
+    void setEmail(String Email) {
+    	MyEmail=Email;
+    	 String message = "MyStore#"+Email;
+  		ConnectController.client.handleMessageFromClientUI(message);
+  		String[] S = ConnectController.client.servermsg.split("#");
+  		Store=S[0];
+    }
+    void FullTable()
     {
     	Pranch.setText(Store);
-    	 String message = "DateOfAllReports#" + store;
-  		Connect.client.handleMessageFromClientUI(message);
-  		String[] Msg = Connect.client.servermsg.split("@");
+    	 String message = "DateOfAllReports#" + Store;
+  		ConnectController.client.handleMessageFromClientUI(message);
+  		String[] Msg = ConnectController.client.servermsg.split("@");
   		String[] Order_rep = Msg[0].split("#");
   		String[] Complaint_rep = Msg[1].split("#");
-  		String[] Pay_rep = Msg[2].split("#");
+  	 String[] Pay_rep = Msg[2].split("#");
   		
   		for(int i=0; i<Order_rep.length;i++) {
 //  			Button date= new Button();
@@ -96,17 +98,21 @@ public class StoreManagerController {
   	           final TableCell<String, Void> cell = new TableCell<String, Void>() {
   	        	 private final Button date = new Button(Order_rep[i]);
   	        	 
-  	        	 {date.setOnAction((ActionEvent event) ->{
+  	        	 {
+  	        		 date.setOnAction((ActionEvent event) ->{
   	        		FXMLLoader loader = new FXMLLoader(getClass().getResource("OrderReport.fxml"));
   	      		AnchorPane root = (AnchorPane) loader.load();
-  	      		OrderReport user = loader.getController();
+  	      		OrderReportController user = loader.getController();
 //  	      		Image im = new Image("images/background.jpg");info to hala
+  	      	 user.setEmail(MyEmail);
       		    user.ordersdata(Order_rep[i],Store);
+      		    
   	      		Scene regist = new Scene(root);
   	      		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
   	      		app_stage.setScene(regist);
-  	      		app_stage.show();
-  	        	 }}
+  	      		app_stage.show();});
+  	        	 }
+  	           
   	        	 @Override
                  public void updateItem(Void item, boolean empty) {
                      super.updateItem(item, empty);
@@ -115,7 +121,7 @@ public class StoreManagerController {
                      } else {
                          setGraphic(date);
                      }
-                 }
+  	        	 }
              };
              return cell;
          }
@@ -144,14 +150,15 @@ public class StoreManagerController {
   	        	 {date.setOnAction((ActionEvent event) ->{
   	        		FXMLLoader loader = new FXMLLoader(getClass().getResource("ComplaintReport.fxml"));
   	      		AnchorPane root = (AnchorPane) loader.load();
-  	      		ComplaintReport user = loader.getController();
+  	      		ComplaintReportController user = loader.getController();
 //  	      		Image im = new Image("images/background.jpg");info to hala
+  	      	 user.setEmail(MyEmail);
       		    user.comlaintsdata(Complaint_rep[i],Store);
   	      		Scene regist = new Scene(root);
   	      		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
   	      		app_stage.setScene(regist);
   	      		app_stage.show();
-  	        	 }}
+  	        	});}
   	        	 @Override
                  public void updateItem(Void item, boolean empty) {
                      super.updateItem(item, empty);
@@ -185,14 +192,15 @@ public class StoreManagerController {
   	        	 {date.setOnAction((ActionEvent event) ->{
   	        		FXMLLoader loader = new FXMLLoader(getClass().getResource("PaymentReport.fxml"));
   	      		AnchorPane root = (AnchorPane) loader.load();
-  	      	PaymentReport user = loader.getController();
+  	      	PaymentReportController user = loader.getController();
 //  	      		Image im = new Image("images/background.jpg");info to hala
+  	      user.setEmail(MyEmail);
       		    user.paymentdata(Pay_rep[i],Store);
   	      		Scene regist = new Scene(root);
   	      		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
   	      		app_stage.setScene(regist);
   	      		app_stage.show();
-  	        	 }}
+  	        	});}
   	        	 @Override
                  public void updateItem(Void item, boolean empty) {
                      super.updateItem(item, empty);

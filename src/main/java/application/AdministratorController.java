@@ -3,7 +3,7 @@
  */
 
 package src.main.java.application;
-
+import src.main.java.application.ConnectController;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -36,14 +36,14 @@ import javafx.util.Callback;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-
+import javafx.scene.chart.BarChart;
 
 public class AdministratorController {
 
 	   @FXML // fx:id="Reports"
-	    private TableView<Data> Reports1= new TableView<>(); // Value injected by FXMLLoader
+	    private TableView<String> Reports1= new TableView<>(); // Value injected by FXMLLoader
 
-	    private final ObservableList<Data> tvObservableList1 = FXCollections.observableArrayList();//??
+	    private final ObservableList<String> tvObservableList1 = FXCollections.observableArrayList();//??
 	    
 	    @FXML // fx:id="OrderReport"
 	    private TableColumn<String, Void> OrderReport1 =new TableColumn("Order Report"); // Value injected by FXMLLoader
@@ -55,9 +55,9 @@ public class AdministratorController {
 	    private TableColumn<String, Void> PaymentReport1 =new TableColumn("Payment Report"); // Value injected by FXMLLoader
 
 	    @FXML // fx:id="Reports"
-	    private TableView<Data> Reports2= new TableView<>(); // Value injected by FXMLLoader
+	    private TableView<String> Reports2= new TableView<>(); // Value injected by FXMLLoader
 
-	    private final ObservableList<Data> tvObservableList2 = FXCollections.observableArrayList();//??
+	    private final ObservableList<String> tvObservableList2 = FXCollections.observableArrayList();//??
 	    
 	    @FXML // fx:id="OrderReport"
 	    private TableColumn<String, Void> OrderReport2 =new TableColumn("Order Report");; // Value injected by FXMLLoader
@@ -82,13 +82,19 @@ public class AdministratorController {
 
     @FXML // fx:id="dateofRep2"
     private Label dateofRep2; // Value injected by FXMLLoader
+    
+    @FXML
+    private Label Pranch1;
+
+    @FXML
+    private Label Pranch2;
 static int count=0;
 static int indiag;
     @FXML
     void backtostores(ActionEvent event) {
      	FXMLLoader loader = new FXMLLoader(getClass().getResource("Stores.fxml"));
     		AnchorPane root = (AnchorPane) loader.load();
-    		Stores user = loader.getController();
+    		StoresController user = loader.getController();
 //    		Image im = new Image("images/background.jpg");to me all comp
     		user.AddStores();
     		Scene regist = new Scene(root);
@@ -98,10 +104,10 @@ static int indiag;
     }
     void FullTable1(String store) 
     {  
-    	Pranch.setText(store);
+    	Pranch1.setText(store);
     	 String message = "DateOfAllReports#" + store;
-  		Connect.client.handleMessageFromClientUI(message);
-  		String[] Msg = Connect.client.servermsg.split("@");
+  		ConnectController.client.handleMessageFromClientUI(message);
+  		String[] Msg = ConnectController.client.servermsg.split("@");
   		String[] Order_rep = Msg[0].split("#");
   		String[] Complaint_rep = Msg[1].split("#");
   		String[] Pay_rep = Msg[2].split("#");
@@ -123,7 +129,7 @@ static int indiag;
   	        	 dateofRep1.setText(Order_rep[i]);
       		   ordersdata(Order_rep[i],store);
   	      		
-  	        	 }}
+  	        	});}
   	        	 @Override
                  public void updateItem(Void item, boolean empty) {
                      super.updateItem(item, empty);
@@ -163,7 +169,7 @@ static int indiag;
   	        		dateofRep1.setText(Complaint_rep[i]);
       		   comlaintsdata(Complaint_rep[i],store);
   	      
-  	        	 }}
+  	        	});}
   	        	 @Override
                  public void updateItem(Void item, boolean empty) {
                      super.updateItem(item, empty);
@@ -199,7 +205,7 @@ static int indiag;
   	        		dateofRep1.setText(Pay_rep[i]);
       		   paymentdata(Pay_rep[i],store);
   	      	
-  	        	 }}
+  	        	});}
   	        	 @Override
                  public void updateItem(Void item, boolean empty) {
                      super.updateItem(item, empty);
@@ -225,10 +231,10 @@ static int indiag;
 		Reports2.setVisible(true);
 		diag2.setVisible(true);
 		//*****************showit*************
-    	Pranch.setText(Store);
+    	Pranch2.setText(Store);
    	 String message = "DateOfAllReports#" + store;
- 		Connect.client.handleMessageFromClientUI(message);
- 		String[] Msg = Connect.client.servermsg.split("@");
+ 		ConnectController.client.handleMessageFromClientUI(message);
+ 		String[] Msg = ConnectController.client.servermsg.split("@");
  		String[] Order_rep = Msg[0].split("#");
  		String[] Complaint_rep = Msg[1].split("#");
  		String[] Pay_rep = Msg[2].split("#");
@@ -249,7 +255,7 @@ static int indiag;
  	        		indiag=1;//to know what diagram we want 
  	        		dateofRep2.setText(Order_rep[i]);
  	      		   ordersdata(Order_rep[i],store);
- 	        	 }}
+ 	        	});}
  	        	 @Override
                 public void updateItem(Void item, boolean empty) {
                     super.updateItem(item, empty);
@@ -282,7 +288,7 @@ static int indiag;
  	        		indiag=1;//to know what diagram we want 
  	        		dateofRep2.setText(Complaint_rep[i]);
  	      		   comlaintsdata(Complaint_rep[i],store);
- 	        	 }}
+ 	        	});}
  	        	 @Override
                 public void updateItem(Void item, boolean empty) {
                     super.updateItem(item, empty);
@@ -318,7 +324,7 @@ static int indiag;
  	        		dateofRep2.setText(Pay_rep[i]);
  	      		   paymentdata(Pay_rep[i],store);
  	  	      	
- 	        	 }}
+ 	        	});}
  	        	 @Override
                 public void updateItem(Void item, boolean empty) {
                     super.updateItem(item, empty);
@@ -338,20 +344,20 @@ static int indiag;
  		}
    }	
 	}
-   void	count(int count1) {count=count1}
+   void	count(int count1) {count=count1;}
 
 
     
     //**************************************************************8
     void ordersdata(String Month1,String store1) {
       	 String message = "order#" + "report#" + store1 + "#" + month1;
-   		Connect.client.handleMessageFromClientUI(message);
-   		String[] Msg = Connect.client.servermsg.split("@");
+   		ConnectController.client.handleMessageFromClientUI(message);
+   		String[] Msg = ConnectController.client.servermsg.split("@");
    		String[] kinds=Msg[0].split("#");
    		String[] amounts=Msg[1].split("#");
    		
    			 final CategoryAxis xAxis = new CategoryAxis();
-   		        final NumberAxis yAxis = new NumberAxis();
+   		        final CategoryAxis yAxis = new CategoryAxis();
    		        if(indiag==0)
    			diag1= new BarChart<String,String>(xAxis,yAxis);
    		        else
@@ -359,8 +365,8 @@ static int indiag;
    			xAxis.setLabel("Kind");       
    	        yAxis.setLabel("amount");
    	        XYChart.Series series1 = new XYChart.Series();
-   	        for(int i=0;i<kinds.lenght;i++) {
-   	        series.getData().add(new XYChart.Data(kinds[i], amounts[i]));
+   	        for(int i=0;i<kinds.length;i++) {
+   	        series1.getData().add(new XYChart.Data(kinds[i], amounts[i]));
    	        }
    	       // Scene scene  = new Scene(bc,800,600);
    	     if(indiag==0)
@@ -375,14 +381,14 @@ static int indiag;
        }
     
     void paymentdata(String Month1,String store1) {
-   	 String message = "payment#" + "complaint#" + store1 + "#" + month1;
-		Connect.client.handleMessageFromClientUI(message);
-		String[] Msg = Connect.client.servermsg.split("#");
+   	 String message = "payment#" + "report#" + store1 + "#" + Month1;
+		ConnectController.client.handleMessageFromClientUI(message);
+		String[] Msg = ConnectController.client.servermsg.split("#");
 		if ((Msg[0] == null) || (Msg[1] == null)|| (Msg[2] == null)|| (Msg[3] == null)) {
 			JOptionPane.showMessageDialog(null, "Showing  Failed ! ");
 		} else {
 			 final CategoryAxis xAxis = new CategoryAxis();
-		        final NumberAxis yAxis = new NumberAxis();
+		        final CategoryAxis yAxis = new CategoryAxis();
 		        if(indiag==0)
 			       diag1= new BarChart<String,String>(xAxis,yAxis);
 		        else
@@ -406,14 +412,14 @@ static int indiag;
 
 }
     void comlaintsdata(String Month1,String store1) {
-      	 String message = "Complaint#" + "report#" + store1 + "#" + month1;
-   		Connect.client.handleMessageFromClientUI(message);
-   		String[] Msg = Connect.client.servermsg.split("#");
+      	 String message = "Complaint#" + "report#" + store1 + "#" + Month1;
+   		ConnectController.client.handleMessageFromClientUI(message);
+   		String[] Msg = ConnectController.client.servermsg.split("#");
    		if ((Msg[0] == null) || (Msg[1] == null)|| (Msg[2] == null)|| (Msg[3] == null)) {
    			JOptionPane.showMessageDialog(null, "Showing  Failed ! ");
    		} else {
    			 final CategoryAxis xAxis = new CategoryAxis();
-   		        final NumberAxis yAxis = new NumberAxis();
+   		        final CategoryAxis yAxis = new CategoryAxis();
    		        if(indiag==0)
    			diag1= new BarChart<String,String>(xAxis,yAxis);
    		        else

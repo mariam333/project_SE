@@ -3,7 +3,7 @@
  */
 
 package src.main.java.application;
-
+import src.main.java.application.ConnectController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -45,7 +45,7 @@ public class StoresController {
 	void signup(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
 		AnchorPane root = (AnchorPane) loader.load();
-		Login user = loader.getController();
+		LoginController user = loader.getController();
 //		Image im = new Image("images/background.jpg");info to hala
 //		user.setimage(im);
 //		user.set(MyEmail);
@@ -58,8 +58,8 @@ public class StoresController {
     void AddStores()
     {
     	 String message = "Name Of All Stores#";
-   		Connect.client.handleMessageFromClientUI(message);
-   		String[] Stores = Connect.client.servermsg.split("#");
+   		ConnectController.client.handleMessageFromClientUI(message);
+   		String[] Stores = ConnectController.client.servermsg.split("#");
    	  CheckBox[] check_stores = new CheckBox[Stores.length];
    	for (int i = 0; i < Stores.length; i++) {
    		CheckBox store = check_stores[i] = new CheckBox(Stores[i]);
@@ -75,6 +75,7 @@ public class StoresController {
    		}
    	
     }
+    }
     
     @FXML
     void view(ActionEvent event) throws IOException{
@@ -85,9 +86,9 @@ public class StoresController {
        count=0;
        AddStores();}
       if(count==1||count==2) {
-    	  FXMLLoader loader = new FXMLLoader(getClass().getResource("StoreManager.fxml"));
+    	  FXMLLoader loader = new FXMLLoader(getClass().getResource("Administrator.fxml"));
   		AnchorPane root = (AnchorPane) loader.load();
-  		StoreManager user = loader.getController();
+  		AdministratorController user = loader.getController();
 //  		Image im = new Image("images/background.jpg");info to hala
   		if(count==1)
   		user.FullTable1(selectedstore1);
@@ -104,7 +105,7 @@ public class StoresController {
     	  }
       }
       
-    }
+    
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
