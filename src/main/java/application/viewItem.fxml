@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="446.0" prefWidth="443.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.application.viewItemController">
+   <children>
+      <ImageView fitHeight="446.0" fitWidth="510.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../test/resources/blue.jpg" />
+         </image>
+      </ImageView>
+      <TextField fx:id="ItemName" editable="false" layoutX="26.0" layoutY="14.0" prefHeight="45.0" prefWidth="169.0" promptText="Item Name" />
+      <ImageView fx:id="itemImage" fitHeight="150.0" fitWidth="200.0" layoutX="222.0" layoutY="59.0" pickOnBounds="true" preserveRatio="true" />
+      <HBox layoutX="35.0" layoutY="96.0" prefHeight="45.0" prefWidth="169.0">
+         <children>
+            <TextField fx:id="ItemTypTxt" editable="false" prefHeight="45.0" prefWidth="203.0" promptText="Type" />
+         </children>
+      </HBox>
+      <HBox layoutX="35.0" layoutY="150.0" prefHeight="45.0" prefWidth="169.0">
+         <children>
+            <TextField fx:id="PriceTxt" editable="false" prefHeight="45.0" prefWidth="203.0" promptText="Price" />
+         </children>
+      </HBox>
+      <HBox layoutX="35.0" layoutY="200.0" prefHeight="45.0" prefWidth="169.0">
+         <children>
+            <TextField fx:id="ItemColorTxt" editable="false" prefHeight="45.0" prefWidth="203.0" promptText="Color" />
+         </children>
+      </HBox>
+      <HBox layoutX="35.0" layoutY="258.0" prefHeight="45.0" prefWidth="169.0">
+         <children>
+            <TextField fx:id="ItemIDtxt" editable="false" prefHeight="45.0" prefWidth="203.0" promptText="Item ID" />
+         </children>
+      </HBox>
+      <HBox layoutX="35.0" layoutY="311.0" prefHeight="45.0" prefWidth="169.0">
+         <children>
+            <TextField fx:id="ItemSale" editable="false" onAction="#IFSaleView" prefHeight="45.0" prefWidth="203.0" promptText="Sale" visible="false" />
+         </children>
+      </HBox>
+      <HBox layoutX="35.0" layoutY="370.0" prefHeight="45.0" prefWidth="169.0">
+         <children>
+            <TextField fx:id="PriceAfterSale" editable="false" prefHeight="45.0" prefWidth="203.0" promptText="Price after Sale" visible="false">
+               <font>
+                  <Font name="Comic Sans MS Bold Italic" size="14.0" />
+               </font>
+            </TextField>
+         </children>
+      </HBox>
+      <Button fx:id="addToCartBtn" layoutX="287.0" layoutY="346.0" mnemonicParsing="false" onAction="#AddItemToCart" prefHeight="45.0" prefWidth="119.0" style="-fx-background-color: #52B9E5;" text="Add to Cart">
+         <font>
+            <Font name="Comic Sans MS Bold Italic" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="backToCatalogBtn" layoutX="279.0" layoutY="396.0" mnemonicParsing="false" onAction="#goBack" prefHeight="38.0" prefWidth="135.0" style="-fx-background-color: #52B9E5;" text="Back to Catalog">
+         <font>
+            <Font name="Comic Sans MS Bold Italic" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
