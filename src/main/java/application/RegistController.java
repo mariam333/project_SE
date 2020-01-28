@@ -1,13 +1,9 @@
 package src.main.java.application;
-
-package application;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,7 +11,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -52,17 +47,26 @@ public class RegistController implements Initializable {
 	@FXML // fx:id="lastname"
 	private TextField lastname; // Value injected by FXMLLoader
 
-	public void setimage(Image im) {
-		image.setImage(im);
+	//public void setimage(Image im) {
+			//image.setImage(im);
+		//}
+	String MyEmail = null;
+
+	public void SeTEmail(String theEmail) {
+		// TODO Auto-generated method stub
+		MyEmail = theEmail;
 	}
+	
 
 	@FXML
-	void back(ActionEvent event) throws IOException {
+	void back(ActionEvent event) throws IOException 
+	{
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("HomePage.fxml"));
 		AnchorPane root = (AnchorPane) loader.load();
 		HomePageController home = loader.getController();
-		Image im = new Image("images/pink.jpg");
-		home.setimage(im);
+		home.setEmail(email.getText());
+		//Image im = new Image("images/pink.jpg");
+		//home.setimage(im);
 		Scene regist = new Scene(root);
 		Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		app_stage.setScene(regist);
@@ -70,7 +74,8 @@ public class RegistController implements Initializable {
 	}
 
 	@FXML
-	void SignUp(ActionEvent event) throws IOException {
+	void SignUp(ActionEvent event) throws IOException 
+	{
 		String Email = email.getText();
 		String pass = password.getText();
 		String firstname = Fistname.getText();
@@ -102,23 +107,23 @@ public class RegistController implements Initializable {
 		} else {
 			String message = "SignUp#" +ID.getText() + "#" + Fistname.getText() + lastname.getText() + "#" + password.getText() + "#" + email.getText() + "#" + mobile.getText() + "#" + visa.getText() + "#" + CVV.getText() + "#"
 					+ MM.getText() + "#" + "1";
-			Connect.client.handleMessageFromClientUI(message);
+			ConnectController.client.handleMessageFromClientUI(message);
 
-			if (Connect.client.servermsg != null && "SignUp".equals(Connect.client.servermsg)) {
+			if (ConnectController.client.servermsg != null && "SignUp".equals(ConnectController.client.servermsg)) {
 				JOptionPane.showMessageDialog(null, "You SignUp successfully ");
 				FXMLLoader loader = new FXMLLoader(getClass().getResource("HomePage.fxml"));
 				AnchorPane root = (AnchorPane) loader.load();
-				HomepageController home = loader.getController();
-				Image im = new Image("images/pink.jpg");
-				home.setimage(im);
+				//HomePageController home = loader.getController();
+				//Image im = new Image("images/pink.jpg");
+				//home.setimage(im);
 				Scene regist = new Scene(root);
 				Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 				app_stage.setScene(regist);
 				app_stage.show();
-				Connect.client.servermsg = null;
-			} else if (Connect.client.servermsg != null && "SignUpFailed".equals(Connect.client.servermsg)) {
+				ConnectController.client.servermsg = null;
+			} else if (ConnectController.client.servermsg != null && "SignUpFailed".equals(ConnectController.client.servermsg)) {
 				JOptionPane.showMessageDialog(null, " SignUp Failed ");
-				Connect.client.servermsg = null;
+				ConnectController.client.servermsg = null;
 
 			}
 		}

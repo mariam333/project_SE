@@ -21,27 +21,27 @@
             <Font name="Comic Sans MS Bold" size="24.0" />
          </font>
       </Label>
-      <HBox alignment="CENTER_LEFT" layoutX="38.0" layoutY="129.0" prefHeight="35.0" prefWidth="300.0" style="-fx-background-color: #BEBFC1;">
+      <HBox alignment="CENTER_LEFT" layoutX="38.0" layoutY="117.0" prefHeight="35.0" prefWidth="300.0" style="-fx-background-color: #BEBFC1;">
          <children>
-            <TextField id="email" fx:id="pro" prefHeight="26.0" prefWidth="219.0" promptText="Enter your name" HBox.hgrow="ALWAYS" />
+            <TextField id="email" fx:id="shopperId" prefHeight="26.0" prefWidth="219.0" promptText="Enter your id" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
-      <HBox alignment="CENTER_LEFT" layoutX="38.0" layoutY="184.0" prefHeight="35.0" prefWidth="300.0" style="-fx-background-color: #BEBFC1;">
+      <HBox alignment="CENTER_LEFT" layoutX="38.0" layoutY="163.0" prefHeight="35.0" prefWidth="300.0" style="-fx-background-color: #BEBFC1;">
          <children>
-            <TextField id="email" fx:id="price" layoutX="27.0" layoutY="140.0" prefHeight="26.0" prefWidth="219.0" promptText="Enter your email" HBox.hgrow="ALWAYS" />
+            <TextField id="email" fx:id="shopId" layoutX="27.0" layoutY="140.0" prefHeight="26.0" prefWidth="219.0" promptText="Enter the name of shop" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
-      <HBox alignment="CENTER_LEFT" layoutX="38.0" layoutY="249.0" prefHeight="35.0" prefWidth="300.0" style="-fx-background-color: #BEBFC1;">
+      <HBox alignment="CENTER_LEFT" layoutX="38.0" layoutY="213.0" prefHeight="35.0" prefWidth="300.0" style="-fx-background-color: #BEBFC1;">
          <children>
-            <TextField id="email" fx:id="color" layoutX="38.0" layoutY="140.0" prefHeight="26.0" prefWidth="219.0" promptText="Enter the name of shop" HBox.hgrow="ALWAYS" />
+            <TextField id="email" fx:id="Date" prefHeight="26.0" prefWidth="219.0" promptText="Enter the Date like DD/MM/YY" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
-      <HBox alignment="CENTER_LEFT" layoutX="37.0" layoutY="308.0" prefHeight="110.0" prefWidth="302.0" style="-fx-background-color: #BEBFC1;">
+      <HBox alignment="CENTER_LEFT" layoutX="37.0" layoutY="344.0" prefHeight="110.0" prefWidth="302.0" style="-fx-background-color: #BEBFC1;">
          <children>
-            <TextField id="email" fx:id="details" prefHeight="77.0" prefWidth="302.0" promptText="please provide as many details as posible " HBox.hgrow="ALWAYS" />
+            <TextField id="email" fx:id="content" prefHeight="77.0" prefWidth="302.0" promptText="please provide as many details as posible " HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
-      <Button fx:id="submit" layoutX="131.0" layoutY="464.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="101.0" style="-fx-background-color: white;" text="submit">
+      <Button fx:id="submit" layoutX="137.0" layoutY="482.0" mnemonicParsing="false" onAction="#MakeComplaint" prefHeight="56.0" prefWidth="101.0" style="-fx-background-color: white;" text="submit">
          <font>
             <Font size="18.0" />
          </font>
@@ -51,5 +51,21 @@
             <Font name="Cambria Italic" size="18.0" />
          </font>
       </Label>
+      <HBox alignment="CENTER_LEFT" layoutX="38.0" layoutY="258.0" prefHeight="35.0" prefWidth="300.0" style="-fx-background-color: #BEBFC1;">
+         <children>
+            <TextField id="email" fx:id="time" layoutX="27.0" layoutY="140.0" prefHeight="26.0" prefWidth="219.0" promptText="Enter the time like 07:52" HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="38.0" layoutY="301.0" prefHeight="35.0" prefWidth="300.0" style="-fx-background-color: #BEBFC1;">
+         <children>
+            <TextField id="email" fx:id="topic" prefHeight="26.0" prefWidth="219.0" promptText="Topic" HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
+      <Label fx:id="Reply" layoutX="6.0" layoutY="554.0" prefHeight="86.0" prefWidth="382.0" visible="false" />
+      <Button layoutX="12.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" prefHeight="7.0" prefWidth="51.0" text="back">
+         <font>
+            <Font name="Comic Sans MS" size="12.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

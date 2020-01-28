@@ -26,21 +26,10 @@
 		<nature>org.eclipse.m2e.core.maven2Nature</nature>
 		<nature>org.eclipse.buildship.core.gradleprojectnature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>blue.jpg</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Pictures/Eclipphoto/blue.jpg</locationURI>
-		</link>
-		<link>
-			<name>pink.jpg</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Pictures/Eclipphoto/pink.jpg</locationURI>
-		</link>
-		<link>
-			<name>white.jpg</name>
-			<type>1</type>
-			<locationURI>PARENT-2-PROJECT_LOC/Pictures/Eclipphoto/white.jpg</locationURI>
-		</link>
-	</linkedResources>
+	<variableList>
+		<variable>
+			<name>copy_PARENT</name>
+			<value>$%7BPARENT-1-PROJECT_LOC%7D/project</value>
+		</variable>
+	</variableList>
 </projectDescription>

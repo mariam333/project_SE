@@ -15,9 +15,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="813.0" prefWidth="683.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.HomePageController">
    <children>
-      <ImageView fitHeight="807.0" fitWidth="495.0" layoutX="195.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="807.0" fitWidth="495.0" layoutX="197.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../project/proj_part3/wild-flowers-floral-wallpaper-mural-coloured.jpg" />
+            <Image url="@../../../test/resources/white.jpg" />
          </image>
       </ImageView>
       <Label layoutX="214.0" layoutY="5.0" prefHeight="55.0" prefWidth="256.0" text="Welcome to our shop" textFill="#f660f8">
@@ -25,9 +25,8 @@
             <Font name="Comic Sans MS Bold Italic" size="24.0" />
          </font>
       </Label>
-      <MenuButton fx:id="SortBy" layoutX="218.0" layoutY="118.0" mnemonicParsing="false" text="Sort By:" textFill="#a91271">
+      <MenuButton fx:id="SortBy" layoutX="218.0" layoutY="169.0" mnemonicParsing="false" text="Sort By:" textFill="#a91271">
         <items>
-          <MenuItem fx:id="IDsort" mnemonicParsing="false" onAction="#sortByID" text="ID" />
           <MenuItem fx:id="priceSort" mnemonicParsing="false" onAction="#sortByPrice" text="Price" />
             <MenuItem fx:id="NameSort" mnemonicParsing="false" onAction="#sortByName" text="Name" />
         </items>
@@ -55,34 +54,53 @@
             <TextField fx:id="searchText" prefHeight="45.0" prefWidth="221.0" promptText="Enter color,name,ID,price" />
          </children>
       </HBox>
-      <AnchorPane layoutY="-1.0" prefHeight="813.0" prefWidth="197.0" style="-fx-background-color: #DC27E0; -fx-border-color: #DC27E0;">
+      <AnchorPane layoutY="-1.0" prefHeight="813.0" prefWidth="193.0" style="-fx-background-color: #DC27E0; -fx-border-color: #DC27E0;">
          <children>
-            <Button fx:id="go2Profile" layoutX="16.0" layoutY="78.0" mnemonicParsing="false" onAction="#Go2Profile" prefHeight="31.0" prefWidth="165.0" text="Go To Profile">
+            <Button fx:id="go2Profile" layoutX="16.0" layoutY="78.0" mnemonicParsing="false" onAction="#Go2Profile" prefHeight="31.0" prefWidth="165.0" text="Go To Profile" visible="false">
                <font>
                   <Font name="Comic Sans MS Bold Italic" size="14.0" />
                </font>
             </Button>
-            <Button fx:id="CreatOrder" layoutX="16.0" layoutY="136.0" mnemonicParsing="false" onAction="#creatOrder" prefHeight="31.0" prefWidth="165.0" text="Create your Order ">
+            <Button fx:id="CreatOrder" layoutX="16.0" layoutY="136.0" mnemonicParsing="false" onAction="#go2creatOrder" prefHeight="31.0" prefWidth="165.0" text="Create your boutique" visible="false">
                <font>
                   <Font name="Comic Sans MS Bold Italic" size="13.0" />
                </font>
             </Button>
-            <Button fx:id="SignOut" layoutX="16.0" layoutY="188.0" mnemonicParsing="false" onAction="#signOut" prefHeight="31.0" prefWidth="165.0" text="Sign out">
+            <Button fx:id="SignOut" layoutX="16.0" layoutY="188.0" mnemonicParsing="false" onAction="#signOut" prefHeight="31.0" prefWidth="165.0" text="Sign out" visible="false">
                <font>
                   <Font name="Comic Sans MS Bold Italic" size="13.0" />
+               </font>
+            </Button>
+            <Label fx:id="usernameTxt" layoutX="48.0" layoutY="35.0" prefHeight="29.0" prefWidth="99.0" text="User Name" visible="false">
+               <font>
+                  <Font name="Comic Sans MS Bold Italic" size="16.0" />
+               </font>
+            </Label>
+            <Button fx:id="GoToCartBtn" layoutX="48.0" layoutY="243.0" mnemonicParsing="false" onAction="#goToCart" prefHeight="31.0" prefWidth="92.0" text="Go To Cart" visible="false">
+               <font>
+                  <Font name="Comic Sans MS Bold Italic" size="12.0" />
                </font>
             </Button>
          </children>
       </AnchorPane>
-      <TableView fx:id="catalog" layoutX="205.0" layoutY="189.0" onMouseClicked="#AddToCart" onSort="#SortBy" prefHeight="490.0" prefWidth="464.0" style="-fx-background-color: F3BCF4;">
+      <TableView fx:id="catalog" layoutX="192.0" layoutY="213.0" maxHeight="807.0" maxWidth="495.0" minHeight="490.0" minWidth="464.0" onMouseClicked="#userClickedOnTable" prefHeight="490.0" prefWidth="495.0" style="-fx-background-color: F3BCF4;">
         <columns>
-          <TableColumn fx:id="numCol" onEditCancel="#UpdatCounter" onEditCommit="#displayNum" onEditStart="#startCounter" prefWidth="61.999969482421875" text="number" />
-          <TableColumn fx:id="NameCol" onEditCommit="#displayName" prefWidth="89.3333740234375" text="Flower's Name" />
-            <TableColumn fx:id="colorCol" onEditCommit="#displayColor" prefWidth="75.0" text="color" />
-            <TableColumn fx:id="priceCol" onEditCommit="#displayPrice" prefWidth="75.0" text="Price" />
-            <TableColumn fx:id="IDCol" onEditCommit="#displayIDItem" prefWidth="27.99993896484375" text="ID" />
-            <TableColumn fx:id="pictureCol" onEditCommit="#displayPic" prefWidth="132.666748046875" text="Picture" />
+          <TableColumn fx:id="NameCol" maxWidth="100.0" minWidth="30.0" prefWidth="89.33328247070312" text="Flower's Name" />
+            <TableColumn fx:id="colorCol" maxWidth="100.0" minWidth="30.0" prefWidth="56.6666259765625" text="color" />
+            <TableColumn fx:id="priceCol" maxWidth="100.0" minWidth="30.0" prefWidth="70.0" text="Price" />
+            <TableColumn fx:id="TypeCol" maxWidth="100.0" minWidth="30.0" prefWidth="68.66668701171875" text="Type" />
+            <TableColumn fx:id="pictureCol" maxWidth="152.0" minWidth="70.0" prefWidth="152.0" text="Image" />
+            <TableColumn fx:id="saleCol" maxWidth="100.0" minWidth="30.0" prefWidth="56.666646321614564" text="Sale" />
         </columns>
       </TableView>
+      <MenuButton fx:id="choseStore" layoutX="218.0" layoutY="116.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="123.0" text="chose store" textFill="#a91271">
+        <items>
+          <MenuItem fx:id="mainStore" mnemonicParsing="false" onAction="#ViewMainCatalog" text="Main Store" />
+          <MenuItem fx:id="HaifaStore" mnemonicParsing="false" onAction="#viewHaifaCatalog" text="Haifa's branch" />
+        </items>
+         <font>
+            <Font name="Comic Sans MS Bold Italic" size="14.0" />
+         </font>
+      </MenuButton>
    </children>
 </AnchorPane>

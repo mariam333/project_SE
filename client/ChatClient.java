@@ -19,7 +19,7 @@ import java.io.*;
  */
 public class ChatClient extends AbstractClient
 {
-  //Instance variables **********************************************
+  //Instance variables ****************
   
   /**
    * The interface type variable.  It allows the implementation of 
@@ -34,7 +34,7 @@ public class ChatClient extends AbstractClient
   public  String servermsg=null;
 
   
-  //Constructors ****************************************************
+  //Constructors ******************
   
   /**
    * Constructs an instance of the chat client.
@@ -74,7 +74,7 @@ public class ChatClient extends AbstractClient
   }
 
   
-  //Instance methods ************************************************
+  //Instance methods ****************
     
   /**
    * This method handles all data that comes in from the server.
