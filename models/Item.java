@@ -25,7 +25,9 @@ public class Item {
 	int quantity;
 	double price;
 	String type;
+	String sale;
 	String image;
+	
 
 static private final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
 static private final String DB = "7VP6RBaQoU";
@@ -300,8 +302,7 @@ public boolean discount (int storeId,double d)
 
 {
 	
-	
-	
+
 	Connection conn = null;
 	try {
 		try {
