@@ -12,7 +12,11 @@ import java.sql.Statement;
 
 import ocsf.server.*;
 import common.*;
+import models.Complaints;
+import models.Report;
 import models.Shopper;
+import models.Staff;
+import models.Stores;
 
 /**
  * This class overrides some of the methods in the abstract 
@@ -128,26 +132,18 @@ public class EchoServer extends AbstractServer
         return;
       }
       
-		String email = null;
-		String pass = null;
-		String firstname = null;
-		String lastname = null;
-		String tel = null;
-		String visa = null;
-		String cvv = null;
-		String[] detail = ((String) msg).split(" ");
+		String[] detail = ((String) msg).split("#");
 		
 		System.out.println(msg);
 		String command = detail[0];
-		System.out.println(command);
+		System.out.println(command+"=command");
 		switch (command) {
 		//SignUp mar 123 mar@gmail.com 0529761893 
 		case "SignUp":
 			
-			System.out.println("hhhhhhhhh");
-			Shopper shopper=new Shopper(detail[1],detail[2],detail[3],Integer.parseInt(detail[4]),Integer.parseInt(detail[5]),Integer.parseInt(detail[6]),Integer.parseInt(detail[7]));
+//			Shopper shopper=new Shopper(detail[1],detail[2],detail[3],Integer.parseInt(detail[4]),Integer.parseInt(detail[5]),Integer.parseInt(detail[6]),Integer.parseInt(detail[7]));
 			try {
-				if (shopper.addShopper() == true) {
+				if (Shopper.addShopper(detail[1],detail[2],detail[3],Integer.parseInt(detail[4]),Integer.parseInt(detail[5]),Integer.parseInt(detail[6]),Integer.parseInt(detail[7])) == true) {
 					this.handleMessageFromServerUI("SignUp");
 					break;
 
@@ -159,118 +155,230 @@ public class EchoServer extends AbstractServer
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		case "LogIn":
+			String email = detail[1];
+			String pass = detail[2];
+			if (email.contains("@stoMan.com") || email.contains("@sysManc.com") || email.contains("@admin.com")|| 
+					email.contains("servWork.co.il")|| email.contains("chWork.com")) {
+				if (Staff.LogIn(email, pass) == 0) {
+					System.out.println(email+"gooo");
+					this.handleMessageFromServerUI("LogIn");
+					break;
+
+				} else if (Staff.LogIn(email, pass) == 1) {
+					this.handleMessageFromServerUI("NotFoundEmail");
+					break;
+
+				} else if (Staff.LogIn(email, pass) == 2) {
+					this.handleMessageFromServerUI("NotFoundPass");
+					break;
+				} else  {
+					this.handleMessageFromServerUI("LogInFailed");
+					break;
+				}
+			}
+
+				else {
+					if (Shopper.LogIn(email, pass) == 0) {
+						this.handleMessageFromServerUI("LogIn");
+						break;
+					} else if (Shopper.LogIn(email, pass) == 1) {
+						this.handleMessageFromServerUI("NotFoundEmail");
+						break;
+
+					} else if (Shopper.LogIn(email, pass) == 2) {
+						this.handleMessageFromServerUI("NotFoundPass");
+						break;
+					}
+				 else  {
+					this.handleMessageFromServerUI("LogInFailed");
+					break;
+				}
+				}
+		case "SignOut":
+		    email = detail[1];
+			if (email.contains("@stoMan.com") || email.contains("@sysManc.com") || email.contains("@admin.com")|| 
+					email.contains("servWork.co.il")|| email.contains("chWork.com")) {
+			if (Staff.SignOut(email)==true) {
+				this.handleMessageFromServerUI("SignOut");
+				break;
+			}
+			else {
+				this.handleMessageFromServerUI("CantSignOut");
+				break;
+			}
+			}else 		
+				if (Shopper.SignOut(email)==true) {
+				this.handleMessageFromServerUI("SignOut");
+				break;
+			}
+			else {
+				this.handleMessageFromServerUI("CantSignOut");
+				break;
+			}
+			
+	
 		case "ShowShopper":
 			String msgToClient= Shopper.ShowShopper(Integer.parseInt(detail[1]));
 			if (msgToClient!=null) {
 				msgToClient="ShowShopper%"+msgToClient;
-				System.out.println(msgToClient);
 				this.handleMessageFromServerUI(msgToClient);
 				break;
 			}else {
 				this.handleMessageFromServerUI("CantShowShopper");
 				break;
 			}
-				
-//    case "ShowItemsbyPrice":
-//    	String 
-//    	
+		case "ShowShopperID":
+			 msgToClient= Shopper.ShowShopperID((detail[1]));
+			if (msgToClient!=null) {
+				msgToClient="ShowShopper%"+msgToClient;
+				this.handleMessageFromServerUI(msgToClient);
+				break;
+			}else {
+				this.handleMessageFromServerUI("CantShowShopper");
+				break;
+			}
 			
+	    case "Edit":
+	    	String WhatToEdit=detail[1];
+	    	String useremail=detail[2];
+	    	String WhatToSet=detail[3];
+			if (Shopper.Edit(WhatToEdit,useremail,WhatToSet)==true) {
+			this.handleMessageFromServerUI("Editing Done Successfully ");
+			break;
+		}else {
+			this.handleMessageFromServerUI("Editing Failed! ");
+			break;
+		}
+	    case "EditRefund":
+	    	int shopperID=Integer.parseInt(detail[1]);
+	    	int refund=Integer.parseInt(detail[2]);
+	    	
+			if (Shopper.EditRefund(shopperID,refund)==true) {
+			this.handleMessageFromServerUI("EditRefundSuccessfully");
+			break;
+		}else {
+			this.handleMessageFromServerUI("EditRefundNotSuccessfully");
+			break;
+		}
+	    	
+			
+		case "DeleteShopper":
+			if (Shopper.DeleteShopper(Integer.parseInt(detail[1]))==true) {
+			this.handleMessageFromServerUI("Deleting");
+			break;
+		}else {
+			this.handleMessageFromServerUI("CantDeleting");
+			break;
+		}
+		case "ShowStores":
+			
+			msgToClient="";
+			 msgToClient= Stores.ShowStores();
+			if (msgToClient!=null) {
+				msgToClient="ShowStores%"+msgToClient;
+				this.handleMessageFromServerUI(msgToClient);
+				break;
+			}else {
+				this.handleMessageFromServerUI("CantShowStore");
+				break;
+			}
+			
+		case "ShowAllComplaints":
+			
+			msgToClient="";
+			 msgToClient= Complaints.ShowAllComplaints();
+			if (msgToClient!=null) {
+				msgToClient="ShowAllComplaints%"+msgToClient;
+				this.handleMessageFromServerUI(msgToClient);
+				break;
+			}else {
+				this.handleMessageFromServerUI("CantShowAllComplaints");
+				break;
+			}
+		case "ShowComplaintBycomplaintIDAndDate":
+			 shopperID=Integer.parseInt(detail[1]);
+			String date=detail[2];
+			msgToClient="";
+			 msgToClient= Complaints.ShowComplaintBycomplaintIDAndDate(shopperID,date);
+			if (msgToClient!=null) {
+				msgToClient="ShowComplaintBycomplaintIDAndDate%"+msgToClient;
+				this.handleMessageFromServerUI(msgToClient);
+				break;
+			}else {
+				this.handleMessageFromServerUI("CantShowComplaintBycomplaintIDAndDate");
+				break;
+			}
+		case "ShowComplaintsToHandel":
+			String time=detail[1];
+		    date=detail[2];
+			msgToClient="";
+			 msgToClient= Complaints.ShowComplaintsToHandel(time,date);
+			if (msgToClient!=null) {
+				msgToClient="ShowComplaintsToHandel%"+msgToClient;
+				this.handleMessageFromServerUI(msgToClient);
+				break;
+			}else {
+				this.handleMessageFromServerUI("CantShowNotHandledComplaints");
+				break;
+			}
+		case "ReplyComplaints":
+			String Reply=detail[2];
+			int ComplaintID=Integer.parseInt(detail[1]);
+			if (Complaints.ReplyComplaints(ComplaintID,Reply)==true) {
+			this.handleMessageFromServerUI("ReplySuccessfully");
+			break;
+		}else {
+			this.handleMessageFromServerUI("ReplyNotSuccessfully");
+			break;
+		}
+	    
+			
+		
+    case "ShowComplaintReport":
+		String msgToClient1=Complaints.ShowComplaintReport(Integer.parseInt(detail[1]),detail[2]);
+		if (msgToClient1!=null) {
+			msgToClient1="ShowComplaintReport%"+msgToClient1;
+			this.handleMessageFromServerUI(msgToClient1);
+			break;
+		}else {
+			this.handleMessageFromServerUI("CantShowComplaintReport");
+			break;
+		}
+    case "ShowPaymentReport":
+		 msgToClient1=Report.ShowPaymentReport(Integer.parseInt(detail[1]),detail[2]);
+		if (msgToClient1!=null) {
+			msgToClient1="ShowPaymentReport"+msgToClient1;
+			this.handleMessageFromServerUI(msgToClient1);
+			break;
+		}else {
+			this.handleMessageFromServerUI("CantShowPaymentReport");
+			break;
+		}
+    case "ShowOrdersReport":
+		 msgToClient1=Report.ShowOrdersReport(Integer.parseInt(detail[1]),detail[2]);
+		if (msgToClient1!=null) {
+			msgToClient1="ShowOrdersReport%"+msgToClient1;
+			System.out.println(msgToClient1);
+			this.handleMessageFromServerUI(msgToClient1);
+			break;
+		}else {
+			this.handleMessageFromServerUI("CantShowOrdersReport");
+			break;
+		}
+		
+    case "addComplaint":
+    	if(Complaints.addComplaint(Integer.parseInt(detail[1]), detail[2], detail[3], detail[4], detail[5], detail[6])==true) {
+			this.handleMessageFromServerUI("AddComplaint");
+			break;
+		}else {
+			this.handleMessageFromServerUI("NotAddComplaint");
+			break;
+		}
+        	
 		}
     }
 
-
-//			if(msg.toString().charAt(0)=='S')
-//			{
-//				
-//	    
-//			String sql = "SELECT * FROM catalog";
-//			ResultSet rs = stmt.executeQuery(sql);
-//			 msg=" ";
-//			while (rs.next()) {
-//		
-//				int num = rs.getInt("num");
-//				String type = rs.getString("type");
-//				String color = rs.getString("color");
-//				int price = rs.getInt("price");
-//				//System.out.format("Number %5s Type %15s color %18s Price %d\n", num, type, color,price);
-//				String curr= "Number: " + num+ " type: " + type + " Color: " + color + " price: " + price + "\n";
-//				msg=msg+curr;
-//			}
-//		     client.setInfo("", msg);
-//
-//		}
-//			else if(msg.toString().charAt(0)=='U')
-//			{
-//				String k=" updated price by num";
-//				client.setInfo("", k);
-//			String [] str=msg.toString().split(" ");
-//
-//			String sql="SELECT * FROM  catalog";
-//			Statement st=conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
-//			ResultSet rs = st.executeQuery(sql);
-//			PreparedStatement update= conn.prepareStatement("UPDATE catalog SET price=? WHERE num =?");
-//			
-//
-//				int newPrice=Integer.parseInt(str[2]);
-//				int num=Integer.parseInt(str[1]);
-//				lastChange=num;
-//				update.setInt(1,newPrice );
-//				update.setInt(2,num );
-//				update.executeUpdate();
-//			
-//			}
-//			
-//			else if(msg.toString().charAt(0)=='P')
-//			{
-//				
-//				 msg=" ";
-//				System.out.println("laaast change num =" + lastChange);
-//			
-//				if (lastChange==0) {
-//				msg=" no update yet";
-//				 client.setInfo("", msg);
-//				}
-//				else {
-//					String [] str=msg.toString().split(" ");
-//					String sql="SELECT * FROM  catalog WHERE num ="+ lastChange ;
-//					System.out.println(sql);
-//
-//					ResultSet rs = stmt.executeQuery(sql);
-//					while (rs.next()) {
-//						int num = rs.getInt("num");
-//						String type = rs.getString("type");
-//						String color = rs.getString("color");
-//						int price = rs.getInt("price");
-//						String curr= "Number: " + num+ " type: " + type + " Color: " + color + " price: " + price + "\n";
-//						msg=msg+curr;
-//					}
-//					 client.setInfo("", msg);
-//				}
-//				
-//			}
-//
-//		}
-//		catch (SQLException se) {
-//		
-//			se.printStackTrace();
-//			System.out.println("SQLException: " + se.getMessage());
-//            System.out.println("SQLState: " + se.getSQLState());
-//            System.out.println("VendorError: " + se.getErrorCode());
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		} finally {
-//			try {
-//				if (stmt != null)
-//					stmt.close();
-//				if (conn != null)
-//					conn.close();
-//			} catch (SQLException se) {
-//				se.printStackTrace();
-//			}
-//		}
-//    
-//      this.sendToAllClients(client.getInfo("loginID") + "> " + msg);
-//    }
   }
 
   /**
@@ -280,17 +388,20 @@ public class EchoServer extends AbstractServer
    */
   public void handleMessageFromServerUI(String message)
   {
+	  System.out.println("lllllll");
+	  System.out.println(message);
     if (message.charAt(0) == '#')
     {
       runCommand(message);
     }
     else
     {
-      // send message to clients
-      serverUI.display(message);
-      this.sendToAllClients("SERVER MSG> " + message);
+        // send message to clients
+        serverUI.display(message);
+        this.sendToAllClients("SERVER MSG> " + message);
+      }
     }
-  }
+  
 
   /**
    * This method executes server commands.
