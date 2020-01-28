@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="src.main.java.application.PaymentReportController">
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.application.PaymentReportController">
    <children>
       <AnchorPane>
          <children>
@@ -29,19 +28,19 @@
                               <Font name="Kristen ITC" size="42.0" />
                            </font>
                         </Label>
-                        <Label layoutX="25.0" layoutY="47.0" prefHeight="66.0" prefWidth="388.0" text="6/2020" textFill="#f8f4f4">
+                        <Label fx:id="dateofRep" layoutX="25.0" layoutY="47.0" prefHeight="66.0" prefWidth="388.0" text="6/2020" textFill="#f8f4f4">
                            <font>
                               <Font name="Kristen ITC" size="42.0" />
                            </font>
                         </Label>
-                        <Button alignment="TOP_LEFT" layoutX="524.0" layoutY="33.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="83.0" style="-fx-background-color: #000000;" text="Back" textFill="#f8f4f4">
+                        <Button alignment="TOP_LEFT" layoutX="524.0" layoutY="33.0" mnemonicParsing="false" onAction="#BacktoAllComp" prefHeight="45.0" prefWidth="83.0" style="-fx-background-color: #000000;" text="Back" textFill="#f8f4f4">
                            <font>
                               <Font name="Berlin Sans FB" size="21.0" />
                            </font>
                         </Button>
                      </children>
                   </AnchorPane>
-                  <BarChart layoutX="6.0" layoutY="150.0" prefHeight="391.0" prefWidth="601.0">
+                  <BarChart fx:id="diag_pay" layoutX="6.0" layoutY="150.0" prefHeight="391.0" prefWidth="601.0">
                      <xAxis>
                         <CategoryAxis side="BOTTOM" />
                      </xAxis>

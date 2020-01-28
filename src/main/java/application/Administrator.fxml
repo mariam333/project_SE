@@ -12,30 +12,27 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="src.main.java.application.AdministratorController">
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.main.java.application.AdministratorController">
    <children>
       <AnchorPane layoutY="-1.0" prefHeight="561.0" prefWidth="683.0">
          <children>
             <AnchorPane prefHeight="561.0" prefWidth="683.0" style="-fx-background-color: #9cafd9;">
                <children>
-                  <TableView layoutX="26.0" layoutY="81.0" prefHeight="200.0" prefWidth="298.0">
+                  <TableView fx:id="Reports1" layoutX="26.0" layoutY="81.0" prefHeight="200.0" prefWidth="298.0">
                      <columns>
-                        <TableColumn prefWidth="82.0" text="Order Report" />
-                        <TableColumn prefWidth="113.0" text="Complaint Report" />
-                        <TableColumn prefWidth="101.0" text="Payment Report" />
+                        <TableColumn fx:id="OrderReport1" prefWidth="82.0" text="Order Report" />
+                        <TableColumn fx:id="ComplaintReport1" prefWidth="113.0" text="Complaint Report" />
+                        <TableColumn fx:id="PaymentReport1" prefWidth="101.0" text="Payment Report" />
                      </columns>
                   </TableView>
-                  <TableView layoutX="365.0" layoutY="81.0" prefHeight="200.0" prefWidth="298.0">
+                  <TableView fx:id="Reports2" layoutX="365.0" layoutY="81.0" prefHeight="200.0" prefWidth="298.0" visible="false">
                      <columns>
-                        <TableColumn prefWidth="88.0" text="Order Report" />
-                        <TableColumn prefWidth="111.0" text="Complaint Report" />
-                        <TableColumn prefWidth="109.0" text="Payment Report" />
+                        <TableColumn fx:id="OrderReport2" prefWidth="88.0" text="Order Report" />
+                        <TableColumn fx:id="ComplaintReport2" prefWidth="111.0" text="Complaint Report" />
+                        <TableColumn fx:id="PaymentReport2" prefWidth="109.0" text="Payment Report" />
                      </columns>
                   </TableView>
-                  <Button layoutX="155.0" layoutY="306.0" mnemonicParsing="false" text="view" />
-                  <Button layoutX="494.0" layoutY="306.0" mnemonicParsing="false" text="view" />
-                  <BarChart layoutX="14.0" layoutY="375.0" prefHeight="190.0" prefWidth="311.0">
+                  <BarChart fx:id="diag1" layoutX="14.0" layoutY="375.0" prefHeight="190.0" prefWidth="311.0">
                      <xAxis>
                         <CategoryAxis side="BOTTOM" />
                      </xAxis>
@@ -43,7 +40,7 @@
                         <NumberAxis side="LEFT" />
                      </yAxis>
                   </BarChart>
-                  <BarChart layoutX="335.0" layoutY="375.0" prefHeight="190.0" prefWidth="334.0">
+                  <BarChart fx:id="diag2" layoutX="335.0" layoutY="375.0" prefHeight="190.0" prefWidth="334.0" visible="false">
                      <xAxis>
                         <CategoryAxis side="BOTTOM" />
                      </xAxis>
@@ -66,13 +63,23 @@
                               </RadialGradient>
                            </textFill>
                         </Label>
-                        <Button fx:id="back" alignment="TOP_LEFT" layoutX="586.0" layoutY="8.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="83.0" style="-fx-background-color: #000000;" text="Back" textFill="#f8f4f4">
+                        <Button fx:id="back" alignment="TOP_LEFT" layoutX="586.0" layoutY="8.0" mnemonicParsing="false" onAction="#backtostores" prefHeight="45.0" prefWidth="83.0" style="-fx-background-color: #000000;" text="Back" textFill="#f8f4f4">
                            <font>
                               <Font name="Berlin Sans FB" size="21.0" />
                            </font>
                         </Button>
                      </children>
                   </AnchorPane>
+                  <Label fx:id="dateofRep1" layoutX="55.0" layoutY="345.0" prefHeight="45.0" prefWidth="177.0" textFill="#f8f4f4">
+                     <font>
+                        <Font name="Kristen ITC" size="29.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="dateofRep2" layoutX="383.0" layoutY="345.0" prefHeight="32.0" prefWidth="119.0" textFill="#f8f4f4">
+                     <font>
+                        <Font name="Kristen ITC" size="29.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </children>

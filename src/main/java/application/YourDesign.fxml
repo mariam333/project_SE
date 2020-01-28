@@ -28,7 +28,7 @@
       </HBox>
       <HBox alignment="CENTER_LEFT" layoutX="38.0" layoutY="184.0" prefHeight="35.0" prefWidth="300.0" style="-fx-background-color: #BEBFC1;">
          <children>
-            <TextField id="email" fx:id="price" layoutX="27.0" layoutY="140.0" prefHeight="26.0" prefWidth="219.0" promptText="Enter price range of product" HBox.hgrow="ALWAYS" />
+            <TextField id="email" fx:id="price" layoutX="27.0" layoutY="140.0" prefHeight="26.0" prefWidth="219.0" promptText="Enter desired price of product" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
       <HBox alignment="CENTER_LEFT" layoutX="38.0" layoutY="249.0" prefHeight="35.0" prefWidth="300.0" style="-fx-background-color: #BEBFC1;">
